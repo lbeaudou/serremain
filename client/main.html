@@ -1,0 +1,200 @@
+<head>
+  <title>serre</title>
+ 
+</head>
+
+<body class="green lighten-2">
+ 
+
+
+</body>
+
+<template name="info">
+	<ul class="  collection with-header">
+<li class="collection-header"><h4>Info </h4></li>
+  <li style="height:70px" class="collection-item">
+ <p>Temperature :  <b class="right">{{temp}} °C</b></p>
+ </li>
+  <li style="height:70px" class="collection-item">
+ <p>Humidité :  <b  class="right">{{humity}} %</b></p>
+  </li>
+  <li style="height:70px" class="collection-item">
+ <p>Humidité terre :  <b  class="right">{{ht}} %</b></p>
+  </li>
+  <li style="height:70px" class="collection-item">
+ <p>Lum :  <b  class="right">{{lum}} lux</b></p>
+ </li>
+ <li style="height:70px" class="collection-item">
+ <p>Niveau bas eau :  <b  class="right">{{lvleau}}</b></p>
+ </li>
+ <li style="height:70px" class="collection-item">
+ <p>Trop plein vidange :  <b  class="right">{{lvltropplein}}</b></p>
+ </li>
+ 
+ <li style="height:70px" class="collection-item">
+ <p><i>Last update : {{date}}</i></p>
+ </li>
+ </ul>
+
+</template>
+
+<template name="graph">
+<div class="row card-panel">
+<div class="col s6 ">
+<h4>Temperature °C</h4>
+<div class="graphiquetemp ct-chart ct-perfect-fourth">
+
+</div>
+</div>
+
+<div class="col s6 ">
+<h4>Humidité %</h4>
+<div class="graphiquehumity ct-chart ct-perfect-fourth">
+
+</div>
+</div>
+
+<div class="col s6 ">
+<h4>Humidité terre %</h4>
+<div class="graphiqueht ct-chart ct-perfect-fourth">
+
+</div>
+</div>
+
+
+<div class="col s6 ">
+<h4>Lumière lux</h4>
+<div class="graphiquelum ct-chart ct-perfect-fourth">
+
+</div>
+</div>
+</div>
+
+
+</template>
+
+<template name="all">
+ <div class="container">
+ <div class="row card-panel">
+<div class=" col s6 ">
+
+ {{> info}} 
+ {{> alert}} 
+ </div>
+ <div class="col s6 ">
+  {{> command}}
+  {{> mode}}
+  </div>
+  </div>
+  {{> graph}}
+  
+ 
+  </div>
+</template>
+
+<template name="command">
+<ul class="  collection with-header">
+<li class="collection-header"><h4>Commandes</h4></li>
+  <li style="height:70px" class="collection-item">
+    
+      
+     <span>Km_1 Pompe</span>
+{{#if km_1}}
+<button class="km_1_off btn red right">OFF</button>
+{{else}}
+<button class="km_1_on btn green right">ON</button>
+{{/if}}
+	
+	
+  </li>
+  <li style="height:70px" class="collection-item">
+    
+      
+   <span>Km_2 LED</span>
+{{#if km_2}}
+<button class="km_2_off btn red right">OFF</button>
+{{else}}
+<button class="km_2_on btn green right">ON</button>
+{{/if}}
+	
+	
+  </li> 
+  <li style="height:70px" class="collection-item">
+   
+<span>Km_3 Ventil</span>
+{{#if km_3}}
+<button class="km_3_off btn red right">OFF</button>
+{{else}}
+<button class="km_3_on btn green right">ON</button>
+{{/if}}
+	
+	
+  </li>
+  <li  style="height:70px" class="collection-item">
+   
+     
+ <span>Km_4 Extract</span>
+{{#if km_4}}
+<button class="km_4_off btn red right">OFF</button>
+{{else}}
+<button class="km_4_on btn green right">ON</button>
+{{/if}}
+	
+	
+  </li>
+ </ul>
+
+
+
+
+
+
+
+</template>
+
+<template name="mode">
+
+<ul class="  collection with-header">
+<li class="collection-header"><h4>Modes</h4></li>
+  <li style="height:70px" class="collection-item">
+  <button class="btn blue">Regulation</button>
+  <button class="btn green">Manuel</button>
+  </li>
+</ul>
+</template>
+
+<template name="alert">
+
+<ul class="collection with-header">
+<li class="collection-header"><h4>Alertes sms <div class="switch right">
+    <label>
+      Off
+      <input type="checkbox">
+      <span class="lever"></span>
+      On
+    </label>
+  </div></h4></li>
+  <li style="height:70px" class="collection-item">
+  Niveau max trop plein vidange
+  <div class="switch right">
+    <label>
+      Off
+      <input type="checkbox">
+      <span class="lever"></span>
+      On
+    </label>
+  </div>
+  </li> 
+  <li style="height:70px" class="collection-item">
+  Niveau bas eau
+  <div class="switch right">
+    <label>
+      Off
+      <input type="checkbox">
+      <span class="lever"></span>
+      On
+    </label>
+  </div>
+  </li>
+</ul>
+</template>
