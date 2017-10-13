@@ -9,71 +9,127 @@
 
 </body>
 
-<template name="info">
-	<ul class="  collection with-header">
-<li class="collection-header"><h4>Info </h4></li>
-  <li style="height:70px" class="collection-item">
- <p>Temperature :  <b class="right">{{temp}} °C</b></p>
- </li>
-  <li style="height:70px" class="collection-item">
- <p>Humidité :  <b  class="right">{{humity}} %</b></p>
-  </li>
-  <li style="height:70px" class="collection-item">
- <p>Humidité terre :  <b  class="right">{{ht}} %</b></p>
-  </li>
-  <li style="height:70px" class="collection-item">
- <p>Lum :  <b  class="right">{{lum}} lux</b></p>
- </li>
- <li style="height:70px" class="collection-item">
- <p>Niveau bas eau :  <b  class="right">{{lvleau}}</b></p>
- </li>
- <li style="height:70px" class="collection-item">
- <p>Trop plein vidange :  <b  class="right">{{lvltropplein}}</b></p>
- </li>
+<template name="mainpage">
+<div id="1" class="block light-green lighten-1">
  
- <li style="height:70px" class="collection-item">
- <p><i>Last update : {{date}}</i></p>
- </li>
- </ul>
+  <div class="slider fullscreen">
+  <ul class="slides">
+    <li>
+      <img src="/img/sem.jpeg"> <!-- random image -->
+      <div class="caption center-align">
+        <h3><a href="#2" class="white-text">Semer</a></h3> 
+        <h5 class="light grey-text text-lighten-3">Planter</h5>
+      </div>
+    </li>
+    <li>
+      <img src="/img/mon.jpeg"> <!-- random image -->
+      <div class="caption left-align">
+        <h3><a href="#3" class="white-text">Surveille tes plantes à distance</a></h3>
+        <h5 class="light grey-text text-lighten-3"></h5>
+      </div>
+    </li>
+    <li>
+      <img src="/img/cons.jpeg"> <!-- random image -->
+      <div class="caption right-align">
+        <h3><a href="#4" class="white-text">Utilise nos conseils et experiences</a></h3>
+        <h5 class="light grey-text text-lighten-3">Y compris des utilisateurs</h5>
+      </div>
+    </li>
+	<li>
+      <img src="/img/recolte.jpeg"> <!-- random image -->
+      <div class="caption right-align">
+        <h3><a href="#5" class="white-text">Recolte</a></h3>
+        <h5 class="light grey-text text-lighten-3"></h5>
+      </div>
+    </li>
+  </ul>
+</div>
+</div>
+
+<div id="2" class="block lime lighten-2">
+  <nav class="pushpin-demo-nav" data-target="2">
+    <div class="nav-wrapper lime lighten-2">
+      <div class="container">
+        <a href="#" class="brand-logo">Semer</a>
+       
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div id="3" class="block light-green lighten-1">
+  <nav class="pushpin-demo-nav" data-target="3">
+    <div class="nav-wrapper light-green lighten-1">
+      <div class="container">
+        <a href="#" class="brand-logo ">Surveille tes plantes à distance</a>
+			
+      </div>
+    </div>
+	
+  </nav>
+  <div class="container">
+<a href="/serre" target="_blank">Demo</a>
+  </div>
+  
+	</div>
+
+<div id="4" class="block lime lighten-2">
+  <nav class="pushpin-demo-nav" data-target="4">
+    <div class="nav-wrapper lime lighten-2">
+      <div class="container">
+        <a href="#" class="brand-logo">Utilise nos conseils et experiences</a>
+       
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div id="5" class="block light-green lighten-1">
+  <nav class="pushpin-demo-nav" data-target="5">
+    <div class="nav-wrapper light-green lighten-1">
+      <div class="container">
+        <a href="#" class="brand-logo ">Recolte</a>
+			
+      </div>
+    </div>
+	
+  </nav>
+  <div class="container">
+	</div>
+</div>
+<footer class="page-footer green">
+      <div class="container">
+        <div class="row">
+          <div class="col l4 s12">
+            <h5 class="white-text">Aide le projet</h5>
+            <p class="grey-text text-lighten-4"> ..</p>
+         
+<button class="btn waves-effect waves-light green lighten-1" type="submit" name="action" alt="PayPal - The safer, easier way to pay online!">Donate Now
+</button>
+
+
+          </div>
+          <div class="col l4 s12">
+            <h5 class="white-text">Contact</h5>
+            <p class="grey-text text-lighten-4">..</p>
+            <a class="btn waves-effect waves-light green lighten-1" target="_blank" href="mailot@leo.beaudou@gmail.com">Chat</a>
+          </div>
+         
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2017 Serre, All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    
 
 </template>
 
-<template name="graph">
-<div class="row card-panel">
-<div class="col s6 ">
-<h4>Temperature °C</h4>
-<div class="graphiquetemp ct-chart ct-perfect-fourth">
 
-</div>
-</div>
-
-<div class="col s6 ">
-<h4>Humidité %</h4>
-<div class="graphiquehumity ct-chart ct-perfect-fourth">
-
-</div>
-</div>
-
-<div class="col s6 ">
-<h4>Humidité terre %</h4>
-<div class="graphiqueht ct-chart ct-perfect-fourth">
-
-</div>
-</div>
-
-
-<div class="col s6 ">
-<h4>Lumière lux</h4>
-<div class="graphiquelum ct-chart ct-perfect-fourth">
-
-</div>
-</div>
-</div>
-
-
-</template>
-
-<template name="all">
+<template name="allserre">
  <div class="container">
  <div class="row card-panel">
 <div class=" col s6 ">
@@ -90,111 +146,4 @@
   
  
   </div>
-</template>
-
-<template name="command">
-<ul class="  collection with-header">
-<li class="collection-header"><h4>Commandes</h4></li>
-  <li style="height:70px" class="collection-item">
-    
-      
-     <span>Km_1 Pompe</span>
-{{#if km_1}}
-<button class="km_1_off btn red right">OFF</button>
-{{else}}
-<button class="km_1_on btn green right">ON</button>
-{{/if}}
-	
-	
-  </li>
-  <li style="height:70px" class="collection-item">
-    
-      
-   <span>Km_2 LED</span>
-{{#if km_2}}
-<button class="km_2_off btn red right">OFF</button>
-{{else}}
-<button class="km_2_on btn green right">ON</button>
-{{/if}}
-	
-	
-  </li> 
-  <li style="height:70px" class="collection-item">
-   
-<span>Km_3 Ventil</span>
-{{#if km_3}}
-<button class="km_3_off btn red right">OFF</button>
-{{else}}
-<button class="km_3_on btn green right">ON</button>
-{{/if}}
-	
-	
-  </li>
-  <li  style="height:70px" class="collection-item">
-   
-     
- <span>Km_4 Extract</span>
-{{#if km_4}}
-<button class="km_4_off btn red right">OFF</button>
-{{else}}
-<button class="km_4_on btn green right">ON</button>
-{{/if}}
-	
-	
-  </li>
- </ul>
-
-
-
-
-
-
-
-</template>
-
-<template name="mode">
-
-<ul class="  collection with-header">
-<li class="collection-header"><h4>Modes</h4></li>
-  <li style="height:70px" class="collection-item">
-  <button class="btn blue">Regulation</button>
-  <button class="btn green">Manuel</button>
-  </li>
-</ul>
-</template>
-
-<template name="alert">
-
-<ul class="collection with-header">
-<li class="collection-header"><h4>Alertes sms <div class="switch right">
-    <label>
-      Off
-      <input type="checkbox">
-      <span class="lever"></span>
-      On
-    </label>
-  </div></h4></li>
-  <li style="height:70px" class="collection-item">
-  Niveau max trop plein vidange
-  <div class="switch right">
-    <label>
-      Off
-      <input type="checkbox">
-      <span class="lever"></span>
-      On
-    </label>
-  </div>
-  </li> 
-  <li style="height:70px" class="collection-item">
-  Niveau bas eau
-  <div class="switch right">
-    <label>
-      Off
-      <input type="checkbox">
-      <span class="lever"></span>
-      On
-    </label>
-  </div>
-  </li>
-</ul>
 </template>
