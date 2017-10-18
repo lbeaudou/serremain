@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 data = new Mongo.Collection('data');
 dbstatus = new Mongo.Collection('status');
+commande = new Mongo.Collection('commande');
 
 Meteor.startup(() => {
  var mqtt = require('mqtt'); 
@@ -36,7 +37,19 @@ Meteor.methods({
 	topic = 'serre/km/esp32_0C6E78/' + km;
 	 client.publish(topic, val); 
 	
+  },
+  'addeventkm' : function(data) {
+	 return  commande.insert(data);
+	  
+  }, 'removeeventkm': function(data) {
+	return commande.remove(data);
+  },
+  'uptageeventkm': function(c, heure, dure) {
+	  commande.update(c, {$set : { heure, dure}});
+	  
+	  
   }
+	 
 	
 })
 
@@ -48,9 +61,13 @@ Meteor.methods({
 	
 
 Meteor.publish('data', function() {
-	return data.find({}, {sort: {date: -1}, limit: 100});
+	return data.find({}, {sort: {date: -1}, limit: 1000});
 });
 
 Meteor.publish('status', function() {
 	return dbstatus.find();
+});
+
+Meteor.publish('command', function() {
+	return commande.find();
 });

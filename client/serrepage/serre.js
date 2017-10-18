@@ -1,6 +1,7 @@
 
 data = new Mongo.Collection('data');
 dbstatus = new Mongo.Collection('status');
+commande = new Mongo.Collection('commande');
 Template.info.helpers({
 	'temp': function() {
 		val = data.findOne({topic:"serre/cp/esp32_0C6E78/temp"}, {sort: {date: -1, limit: 1}})
@@ -81,6 +82,216 @@ drawgraph('ht', 1);
 	
 	 
 })
+
+Template.picture.onRendered(function() {
+	
+$('.carousel.carousel-slider').carousel({fullWidth: true});
+	
+	
+	 
+})
+
+function addeventkm(type, heure, dure) {
+	
+	data = {
+		'km':type,
+		'heure':heure,
+		'dure':dure
+		
+		
+		
+	}
+	
+	Meteor.call('addeventkm', data, function(e, r) {
+		console.log(r);		
+	});
+	
+}
+function hourtopx(hour) {
+valh = 60;
+	h = (hour - (hour % 3600))/3600;
+	minute = hour % 3600;
+	px = h *60 + (minute/60);
+
+	console.log(px);
+	return(px);
+}
+function pxtohour(px) {
+valh = 60;
+	hour = (px - px % valh) / valh;
+	minute = ((px % valh)*60)/valh;
+
+	return(hour + " h " + minute);
+}
+
+function pxtohournum(px) {
+valh = 60;
+	hour = (px - px % valh) / valh;
+	console.log(hour);
+	minute = ((px % valh)*60)/valh;
+	console.log(minute);
+	sec = hour * 3600 + minute * 60;
+	console.log(sec);
+	return(sec);
+}
+
+Template.calendrier.events({
+	
+	'click .del': function() {
+		
+		// commande.remove(this);
+		console.log(this);
+		Meteor.call('removeeventkm', this);
+	},
+	'dragstop .datepompe': function(e) {
+		console.log(this);
+		console.log(e);
+		
+		target = e.currentTarget;
+		pxtop = $(target).position();
+		pxtop = pos.top;
+		pxheight = $(target).height();
+		console.log(pxtohournum(pxtop));
+		console.log(pxheight);
+		Meteor.call('uptageeventkm',this, pxtohournum(pxtop), pxtohournum(pxheight));
+	},
+	
+	'drag .datepompe': function(e) {
+		console.log(this);
+		console.log(e);
+		
+		target = e.currentTarget;
+		pos = $(target).position()
+		pxtop = pos.top;
+		pxheight = target.offsetHeight;
+	
+		console.log('heure :' + pxtohournum(pxtop));
+		  // $('.' + this._id).find('.heure').text(pxtohournum(pxtop));
+		  $(target).find('.heure').text(pxtohour(pxtop));
+	},
+	'resizestop .datepompe':function(e) {
+		console.log(this);
+		console.log(e);
+		
+	
+		target = e.currentTarget;
+		pos = $(target).position();
+		pxtop = pos.top;
+		pxheight = $(target).height();
+		console.log(pxtop);
+		console.log(pxheight);
+		Meteor.call('uptageeventkm',this, pxtohournum(pxtop), pxtohournum(pxheight));
+		
+		
+		
+	},
+	'resize .datepompe':function(e) {
+		console.log(this);
+		console.log(e);
+		
+		target = e.currentTarget;
+		pos = $(target).height();
+		$(target).find('.dure').text(pxtohour(pos));
+	}
+	
+	
+	
+})
+
+Template.calendrier.helpers({
+	
+	'pompe': function() {
+		
+		return commande.find();
+	},
+	'h': function(day, heure) {
+		
+
+date = new Date();
+offset = (date.getDay() + 6) % 7;
+console.log(offset);
+d = offset+parseInt(day)-1;
+h= parseInt(heure)+4;
+
+
+datea = new Date(date.getFullYear(), date.getMonth(), date.getDate()-offset+parseInt(day)-1, heure);
+datee = new Date(date.getFullYear(), date.getMonth(), date.getDate()-offset+parseInt(day)-1, h);
+
+console.log("day " + d + " heure " + heure + "  " + datea);
+console.log("day " + d + " heure " + heure + "  " + datee);
+// console.log(datef);
+v = data.find({topic : "serre/cp/esp32_0C6E78/temp",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+		var n = v.length; 
+        var somme = 0;
+		if(v ==0) {
+			return '';
+		} else {
+        for(i=0; i<n; i++) {
+                somme += parseInt(v[i].message);
+        }
+		
+		return Math.round((somme/n*10))/10;
+		}
+		
+	}
+	
+	
+	
+})
+
+
+
+
+Template.calendrier.onRendered(function() {
+	
+commande.find().observeChanges({
+    added: function(id, doc) {
+       
+		$('.'+id).find('.heure').text(pxtohour(hourtopx(doc.heure)));
+		$('.'+id).find('.dure').text(pxtohour(hourtopx(doc.dure)));
+		$('.'+id).css({"left": "0", "top":hourtopx(doc.heure), "height":hourtopx(doc.dure, "position":"absolue")}); 
+		$('.'+id).draggable({grid: [ 2, 2 ] , axis: "y", containment: "#pompeCanvas",scroll: false,
+			drag: function() {
+				pos = $(this).position();
+				
+				
+				},
+			
+				});
+		$('.'+id).resizable({
+      grid: 0, maxWidth : 250, minWidth : 250
+    });
+		
+
+			},
+	changed:function(id, doc) {
+       
+	
+		
+		$('.'+id).css({"left": "0", "top":hourtopx(doc.heure), "height":hourtopx(doc.dure, "position":"absolue")}); 
+		$('.'+id).draggable({grid: [ 2, 2 ] , axis: "y", containment: "#pompeCanvas",scroll: false,
+			drag: function() {
+				// pos = $(this).position();
+				 // $(this).find('.heure').text(hourtopx(doc.heure));
+				},
+			
+				});
+
+			},
+});
+function getMonday() {
+	var date=new Date()
+	var offset = (date.getDay() + 6) % 7;
+	var ldate = new Date(date.getFullYear(), date.getMonth(), date.getDate()-offset);
+	var tab_jour=new Array("Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi");
+var tab_mois=new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+	return tab_jour[ldate.getDay()] + ' ' + ldate.getDate() + ' ' + tab_mois[ldate.getMonth()];
+}
+	console.log(getMonday());
+
+
+})
+
 
 Template.command.events({
 	'click .km_1_on': function() {
@@ -196,7 +407,7 @@ function drawgraph(mesure, func) {
    addedBefore: function () {
 		
 			val = data.find({topic}, {sort: {date: 1}, limit}).fetch();
-			console.log(val);
+			// console.log(val);
 		var v = [];
 		var lab = [];
 		

@@ -5,7 +5,7 @@ action: function () {
 
  waitOn: function () {
     // return one handle, a function, or an array
- return [Meteor.subscribe('data'), Meteor.subscribe('status')];
+ return [Meteor.subscribe('data'), Meteor.subscribe('status'), Meteor.subscribe('command')];
   },
 });
 

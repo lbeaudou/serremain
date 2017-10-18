@@ -2,3 +2,79 @@
  html, body, .block {
     height: 100%;
   }
+  
+  .objectpompe, .objectlum,  .datepompe, .datelum {
+ width:250px;
+height:20px;
+position:relative;
+}
+.datepompe, .datelum { 
+
+position:absolute;
+}
+    
+#pompeCanvas, #lumCanvas {
+
+width:250px; 
+height:1440px; 
+color:black;
+background-color: white;
+float:left; 
+position:relative;
+}
+
+
+
+.demiheurediv {
+	
+	width:100%;
+	height:30px;
+	text-align:center;
+	background-color: white;
+	border-bottom:1px solid grey;
+	border-right:1px solid grey;
+	margin:0;
+	padding:5px;
+	}
+	
+	.qheurediv {
+	
+	width:100%;
+	height:240px;
+	text-align:center;
+	background-color: white;
+	border-bottom:1px solid grey;
+	border-right:1px solid grey;
+	margin:0;
+	padding:5px;
+	}
+	
+	.mesureqheurediv {
+	
+	width:100%;
+	height:240px;
+	text-align:center;
+	background-color: white;
+	border-bottom:1px solid grey;
+	border-right:1px solid grey;
+	margin:0;
+	padding:5px;
+	}
+	
+	.daytab {
+		width:40px;
+	float:left;
+	text-decoration:bold;
+	}
+	
+.calender_container {
+	width:850px;
+	overflow-y: scroll;
+	height:600px;
+}
+
+.heuretab {
+	
+	width:25px;
+	float:left;
+}

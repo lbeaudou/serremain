@@ -72,7 +72,185 @@
 
 
 </template>
+<template name="picture">
+<div class="row card-panel">
 
+<div class="col s12 ">
+ <div class="carousel carousel-slider">
+    <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/800/400/food/1"></a>
+    <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/800/400/food/2"></a>
+    <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/800/400/food/3"></a>
+    <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/800/400/food/4"></a>
+  </div>
+
+</div>
+</div>
+
+</template>
+
+<template name="calendrier">
+
+ <div class="row card-panel">
+         Tool Bar:
+        <div class="objectpompe blue">
+            <span>Heure : </span>
+            <span class="heure">0</span>
+            <span>Durée : </span>
+            <span class="dure">0</span>
+        </div>
+		<div class="objectlum yellow">
+            <span>Heure : </span>
+            <span class="heure">0</span>
+            <span>Durée : </span>
+            <span class="dure">0</span>
+        </div>
+        <br>
+		<div class="calender_container">
+<div class="heuretab">
+<div class="demiheurediv"><span>0</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>1</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>2</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>3</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>4</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>5</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>6</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>7</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>8</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>9</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>10</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>11</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>12</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>13</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>14</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>15</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>16</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>17</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>18</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>19</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>20</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>21</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>22</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>23</span></div>
+<div class="demiheurediv"><span></span></div>
+
+</div>
+
+
+
+	<div id="pompeCanvas">
+	{{#each pompe}}
+	
+	<div class="datepompe blue {{_id}}">
+            <span>Heure : </span>
+            <!-- <span class="heure">{{ hour heure}}</span> -->
+            <span class="heure"></span>
+            <span>Durée : </span>
+            <span class="dure">0</span>
+            <span class="del right"><i class="material-icons">delete</i></span>
+        </div>
+	
+	{{/each}}
+	
+	</div>
+	
+	 <ul class="pagination">
+   
+    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
+	<div class="heuretab">
+<div class="qheurediv"><span>0-4</span></div>
+<div class="qheurediv"><span>4-8</span></div>
+<div class="qheurediv"><span>8-12</span></div>
+<div class="qheurediv"><span>12-16</span></div>
+<div class="qheurediv"><span>16-20</span></div>
+<div class="qheurediv"><span>20-0</span></div>
+
+ 
+    </div>
+	<div class="daytab">
+		<div class="mesureqheurediv"><span class="lundi-1">{{h "1" "0"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{h "1" "4"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{h "1" "8"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{h "1" "12"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{h "1" "16"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{h "1" "20"}}</span></div>
+	</div>
+	<div class="daytab">
+		<div class="mesureqheurediv"><span class="lundi-1">{{h "2" "0"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{h "2" "4"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{h "2" "8"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{h "2" "12"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{h "2" "16"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{h "2" "20"}}</span></div>
+	</div>
+	<div class="daytab">
+		<div class="mesureqheurediv"><span class="lundi-1">{{h "3" "0"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{h "3" "4"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{h "3" "8"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{h "3" "12"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{h "3" "16"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{h "3" "20"}}</span></div>
+	</div>
+	<div class="daytab">
+		<div class="mesureqheurediv"><span class="lundi-1">{{h "4" "0"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{h "4" "4"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{h "4" "8"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{h "4" "12"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{h "4" "16"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{h "4" "20"}}</span></div>
+	</div>
+	<div class="daytab">
+		<div class="mesureqheurediv"><span class="lundi-1">{{h "5" "0"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{h "5" "4"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{h "5" "8"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{h "5" "12"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{h "5" "16"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{h "5" "20"}}</span></div>
+	</div>
+	<div class="daytab">
+		<div class="mesureqheurediv"><span class="lundi-1">{{h "6" "0"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{h "6" "4"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{h "6" "8"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{h "6" "12"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{h "6" "16"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{h "6" "20"}}</span></div>
+	</div>
+	<div class="daytab">
+		<div class="mesureqheurediv"><span class="lundi-1">{{h "7" "0"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{h "7" "4"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{h "7" "8"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{h "7" "12"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{h "7" "16"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{h "7" "20"}}</span></div>
+	</div>
+    </div>
+    </div>
+  
+</template>
 
 
 <template name="command">
