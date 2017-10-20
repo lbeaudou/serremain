@@ -13,23 +13,18 @@
 	<ul class="  collection with-header">
 <li class="collection-header"><h4>Info </h4></li>
   <li style="height:70px" class="collection-item">
- <p>Temperature :  <b class="right">{{temp}} °C</b></p>
+	<div class="row">
+			<div class="col s2"> <p><b >{{temp}} °C</b></p></div>
+			<div class="col s2"> <p><b  >{{humity}} %</b></p></div>
+			<div class="col s2"><p><b  >{{ht}} %</b></p></div>
+			<div class="col s2"><p><b  >{{lum}} lux</b></p></div>
+			<div class="col s2"><p><b  >{{wath}} w</b></p></div>
+			<div class="col s1"><p><i class="material-icons">{{#if lvleau}} battery_charging_full {{else}} battery_alert {{/if}}</i></p></div>
+			<div class="col s1"><p><i class="material-icons">{{#if lvltropplein}} delete {{else}} delete_forever {{/if}}</i></p></div>
+ 
+	</div>
  </li>
-  <li style="height:70px" class="collection-item">
- <p>Humidité :  <b  class="right">{{humity}} %</b></p>
-  </li>
-  <li style="height:70px" class="collection-item">
- <p>Humidité terre :  <b  class="right">{{ht}} %</b></p>
-  </li>
-  <li style="height:70px" class="collection-item">
- <p>Lum :  <b  class="right">{{lum}} lux</b></p>
- </li>
- <li style="height:70px" class="collection-item">
- <p>Niveau bas eau :  <b  class="right">{{lvleau}}</b></p>
- </li>
- <li style="height:70px" class="collection-item">
- <p>Trop plein vidange :  <b  class="right">{{lvltropplein}}</b></p>
- </li>
+
  
  <li style="height:70px" class="collection-item">
  <p><i>Last update : {{date}}</i></p>
@@ -98,13 +93,10 @@
             <span>Durée : </span>
             <span class="dure">0</span>
         </div>
-		<div class="objectlum yellow">
-            <span>Heure : </span>
-            <span class="heure">0</span>
-            <span>Durée : </span>
-            <span class="dure">0</span>
-        </div>
+		
         <br>
+		<div class="row">
+		<div class="col s6">
 		<div class="calender_container">
 <div class="heuretab">
 <div class="demiheurediv"><span>0</span></div>
@@ -176,11 +168,16 @@
 	
 	</div>
 	
-	 <ul class="pagination">
+	 
+    </div>
+	
+	<ul class="pagination">
    
     <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
     <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
   </ul>
+  </div>
+  <div class="col s6">
 	<div class="heuretab">
 <div class="qheurediv"><span>0-4</span></div>
 <div class="qheurediv"><span>4-8</span></div>
@@ -192,61 +189,62 @@
  
     </div>
 	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{h "1" "0"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{h "1" "4"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{h "1" "8"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{h "1" "12"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{h "1" "16"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{h "1" "20"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-1">{{{h "1" "0"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{{h "1" "4"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{{h "1" "8"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{{h "1" "12"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{{h "1" "16"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{{h "1" "20"}}}</span></div>
 	</div>
 	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{h "2" "0"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{h "2" "4"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{h "2" "8"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{h "2" "12"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{h "2" "16"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{h "2" "20"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-1">{{{h "2" "0"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{{h "2" "4"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{{h "2" "8"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{{h "2" "12"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{{h "2" "16"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{{h "2" "20"}}}</span></div>
 	</div>
 	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{h "3" "0"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{h "3" "4"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{h "3" "8"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{h "3" "12"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{h "3" "16"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{h "3" "20"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-1">{{{h "3" "0"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{{h "3" "4"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{{h "3" "8"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{{h "3" "12"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{{h "3" "16"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{{h "3" "20"}}}</span></div>
 	</div>
 	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{h "4" "0"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{h "4" "4"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{h "4" "8"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{h "4" "12"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{h "4" "16"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{h "4" "20"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-1">{{{h "4" "0"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{{h "4" "4"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{{h "4" "8"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{{h "4" "12"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{{h "4" "16"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{{h "4" "20"}}}</span></div>
 	</div>
 	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{h "5" "0"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{h "5" "4"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{h "5" "8"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{h "5" "12"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{h "5" "16"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{h "5" "20"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-1">{{{h "5" "0"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{{h "5" "4"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{{h "5" "8"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{{h "5" "12"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{{h "5" "16"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{{h "5" "20"}}}</span></div>
 	</div>
 	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{h "6" "0"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{h "6" "4"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{h "6" "8"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{h "6" "12"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{h "6" "16"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{h "6" "20"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-1">{{{h "6" "0"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{{h "6" "4"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{{h "6" "8"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{{h "6" "12"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{{h "6" "16"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{{h "6" "20"}}}</span></div>
 	</div>
 	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{h "7" "0"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{h "7" "4"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{h "7" "8"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{h "7" "12"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{h "7" "16"}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{h "7" "20"}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-1">{{{h "7" "0"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-2">{{{h "7" "4"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-3">{{{h "7" "8"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-4">{{{h "7" "12"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-5">{{{h "7" "16"}}}</span></div>
+		<div class="mesureqheurediv"><span class="lundi-6">{{{h "7" "20"}}}</span></div>
 	</div>
+    </div>
     </div>
     </div>
   

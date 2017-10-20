@@ -39,6 +39,16 @@ Template.info.helpers({
 		
 	},
 	
+	'wath': function() {
+		val = data.findOne({topic:"serre/cp/esp32_0C6E78/amp"}, {sort: {date: -1, limit: 1}})
+		if(val != undefined) {
+		return  parseInt(val.message * 230);
+		} else {
+			return 0.1;
+		}
+		
+	},
+	
 	'date': function() {
 		val = data.findOne({topic:"serre/cp/esp32_0C6E78/lum"}, {sort: {date: -1, limit: 1}})
 		if(val != undefined) {
@@ -224,25 +234,103 @@ v = data.find({topic : "serre/cp/esp32_0C6E78/temp",  "date":{"$gte":datea, "$lt
 		var n = v.length; 
         var somme = 0;
 		if(v ==0) {
-			return '';
+			temp =  'n/a';
 		} else {
         for(i=0; i<n; i++) {
                 somme += parseInt(v[i].message);
         }
+		temp = Math.round((somme/n*10))/10;
+		}
+v = data.find({topic : "serre/cp/esp32_0C6E78/lum",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+		var n = v.length; 
+        var somme = 0;
+		if(v ==0) {
+			lum =  'n/a';
+		} else {
+        for(i=0; i<n; i++) {
+                somme += parseInt(v[i].message);
+        }
+		lum = Math.round((somme/n*10))/10;
+		}
+v = data.find({topic : "serre/cp/esp32_0C6E78/ht",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+		var n = v.length; 
+        var somme = 0;
+		if(v ==0) {
+			ht =  'n/a';
+		} else {
+        for(i=0; i<n; i++) {
+                somme += parseInt(v[i].message);
+        }
+		ht = Math.round((somme/n*10))/10;
+		}
+
+v = data.find({topic : "serre/cp/esp32_0C6E78/humity",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+		var n = v.length; 
+        var somme = 0;
+		if(v ==0) {
+			humity =  'n/a';
+		} else {
+        for(i=0; i<n; i++) {
+                somme += parseInt(v[i].message);
+        }
+		humity = Math.round((somme/n*10))/10;
+		}
 		
-		return Math.round((somme/n*10))/10;
+		return color(temp, 20, 30, "°C") + "<br>" + color(ht, 20, 80,"%") + "<br>" + color(humity, 20, 70,"%") + "<br>" + color(lum, 1000, 50000,"lux") + "";
 		}
 		
 	}
-	
-	
-	
-})
 
 
+)
+
+function color(val, s1, s2, unit) {
+	if(val != 'n/a') {
+	if(val < s1) {
+		return "<span class='blue'>"+val+" " + unit +"</span>";
+	} else {
+		
+		if(val >=s1 && val <s2) {
+			return "<span class='green'>"+val+" " + unit +"</span>";
+		} else {
+			
+			return "<span class='red'>"+val+" " + unit +"</span>";
+			
+		}
+		
+	}
+	} else {
+		return "<span class='grey-text'>"+val+" " + unit +"</span>";
+	}
+	
+}
 
 
 Template.calendrier.onRendered(function() {
+	 $(".objectpompe").draggable({
+    	helper:'clone',  containment: "#pompeCanvas", 
+    });  
+	  
+	  $("#pompeCanvas").droppable({
+        accept: ".objectpompe",
+        drop: function(event,ui){
+			
+    
+           
+			
+          console.log(event);
+          console.log(ui);
+			base = $("#pompeCanvas").offset();
+			drag = ui.offset.top;
+			console.log(base);
+			console.log(drag);
+			topt = drag - base.top;
+		 
+
+///			
+			addeventkm('pompe', pxtohournum(topt), "1800");
+        }
+    });
 	
 commande.find().observeChanges({
     added: function(id, doc) {
@@ -250,7 +338,7 @@ commande.find().observeChanges({
 		$('.'+id).find('.heure').text(pxtohour(hourtopx(doc.heure)));
 		$('.'+id).find('.dure').text(pxtohour(hourtopx(doc.dure)));
 		$('.'+id).css({"left": "0", "top":hourtopx(doc.heure), "height":hourtopx(doc.dure, "position":"absolue")}); 
-		$('.'+id).draggable({grid: [ 2, 2 ] , axis: "y", containment: "#pompeCanvas",scroll: false,
+		$('.'+id).draggable({axis: "y", containment: "#pompeCanvas",scroll: false,
 			drag: function() {
 				pos = $(this).position();
 				
@@ -269,7 +357,7 @@ commande.find().observeChanges({
 	
 		
 		$('.'+id).css({"left": "0", "top":hourtopx(doc.heure), "height":hourtopx(doc.dure, "position":"absolue")}); 
-		$('.'+id).draggable({grid: [ 2, 2 ] , axis: "y", containment: "#pompeCanvas",scroll: false,
+		$('.'+id).draggable({axis: "y", containment: "#pompeCanvas",scroll: false,
 			drag: function() {
 				// pos = $(this).position();
 				 // $(this).find('.heure').text(hourtopx(doc.heure));
