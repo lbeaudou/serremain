@@ -3,7 +3,7 @@
     height: 100%;
   }
   
-  .objectpompe, .objectlum,  .datepompe, .datelum {
+.objectlum,  .datepompe, .datelum {
  width:250px;
 height:20px;
 position:relative;
@@ -23,7 +23,15 @@ float:left;
 position:relative;
 }
 
-
+.contain {
+	
+	width:80%;
+	margin:auto;
+}
+.ui-resizable {
+	
+	position:absolute !important;
+}
 
 .demiheurediv {
 	
@@ -68,7 +76,7 @@ position:relative;
 	}
 	
 .calender_container {
-	width:550px;
+	
 	overflow-y: scroll;
 	height:600px;
 }
@@ -77,4 +85,11 @@ position:relative;
 	
 	width:50px;
 	float:left;
+}
+
+.add {
+	
+	position:absolute;
+	right:0;
+	
 }

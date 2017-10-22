@@ -61,7 +61,7 @@ Meteor.methods({
 	
 
 Meteor.publish('data', function() {
-	return data.find({}, {sort: {date: -1}, limit: 1000});
+	return data.find({}, {sort: {date: -1}, limit: 100});
 });
 
 Meteor.publish('status', function() {

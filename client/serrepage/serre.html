@@ -28,6 +28,10 @@
  
  <li style="height:70px" class="collection-item">
  <p><i>Last update : {{date}}</i></p>
+ </li> 
+ 
+ <li style="height:300px;background-image:url('https://media.licdn.com/media/AAEAAQAAAAAAAANbAAAAJDE5NjBkNDk1LTY3ZGQtNDA0NS04YTJiLTdkNmU3NjZiNjI3Mg.png'); background-repeat:no-repeat;background-position:center center;" class="collection-item">
+ <!-- <img src="" class="imgtop"> -->
  </li>
  </ul>
 
@@ -71,11 +75,12 @@
 <div class="row card-panel">
 
 <div class="col s12 ">
- <div class="carousel carousel-slider">
-    <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/800/400/food/1"></a>
-    <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/800/400/food/2"></a>
-    <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/800/400/food/3"></a>
-    <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/800/400/food/4"></a>
+ <div class="carousel">
+    <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
+    <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
+    <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
+    <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
+    <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
   </div>
 
 </div>
@@ -84,20 +89,22 @@
 </template>
 
 <template name="calendrier">
+<div class="row">
+<div class="col l5 m12 s12">
 
- <div class="row card-panel">
-         Tool Bar:
-        <div class="objectpompe blue">
-            <span>Heure : </span>
-            <span class="heure">0</span>
-            <span>Durée : </span>
-            <span class="dure">0</span>
-        </div>
-		
-        <br>
-		<div class="row">
-		<div class="col s6">
-		<div class="calender_container">
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Pompe</a></li>
+    <li><a href="#tabs-2">Ventilation</a></li>
+    <li><a href="#tabs-3">Extraction</a></li>
+    <li><a href="#tabs-4">LED</a></li>
+  </ul>
+  <div id="tabs-1">
+  
+  <div class="add objectpompe">
+  <i class="large material-icons">add_box</i></div>
+    <div class="calender_container">
+	
 <div class="heuretab">
 <div class="demiheurediv"><span>0</span></div>
 <div class="demiheurediv"><span></span></div>
@@ -167,86 +174,428 @@
 	{{/each}}
 	
 	</div>
+	</div>
+   </div> 
+   <!-- End tab 1 --> 
+
+   <div id="tabs-2">
+  
+  <div class="add objectpompe">
+  <i class="large material-icons">add_box</i></div>
+    <div class="calender_container">
 	
-	 
-    </div>
+<div class="heuretab">
+<div class="demiheurediv"><span>0</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>1</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>2</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>3</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>4</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>5</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>6</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>7</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>8</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>9</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>10</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>11</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>12</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>13</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>14</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>15</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>16</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>17</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>18</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>19</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>20</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>21</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>22</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>23</span></div>
+<div class="demiheurediv"><span></span></div>
+
+</div>
+
+
+
+	<div id="pompeCanvas">
+	{{#each pompe}}
 	
-	<ul class="pagination">
-   
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+	<div class="datepompe grey {{_id}}">
+            <span>Heure : </span>
+            <!-- <span class="heure">{{ hour heure}}</span> -->
+            <span class="heure"></span>
+            <span>Durée : </span>
+            <span class="dure">0</span>
+            <span class="del right"><i class="material-icons">delete</i></span>
+        </div>
+	
+	{{/each}}
+	
+	</div>
+	</div>
+   </div> 
+   <!-- End tab 2 -->  
+   <div id="tabs-3">
+  
+  <div class="add objectpompe">
+  <i class="large material-icons">add_box</i></div>
+    <div class="calender_container">
+	
+<div class="heuretab">
+<div class="demiheurediv"><span>0</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>1</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>2</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>3</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>4</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>5</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>6</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>7</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>8</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>9</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>10</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>11</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>12</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>13</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>14</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>15</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>16</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>17</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>18</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>19</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>20</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>21</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>22</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>23</span></div>
+<div class="demiheurediv"><span></span></div>
+
+</div>
+
+
+
+	<div id="pompeCanvas">
+	{{#each pompe}}
+	
+	<div class="datepompe green {{_id}}">
+            <span>Heure : </span>
+            <!-- <span class="heure">{{ hour heure}}</span> -->
+            <span class="heure"></span>
+            <span>Durée : </span>
+            <span class="dure">0</span>
+            <span class="del right"><i class="material-icons">delete</i></span>
+        </div>
+	
+	{{/each}}
+	
+	</div>
+	</div>
+   </div> 
+   <!-- End tab 3 --> 
+
+   <div id="tabs-4">
+  
+  <div class="add objectpompe">
+  <i class="large material-icons">add_box</i></div>
+    <div class="calender_container">
+	
+<div class="heuretab">
+<div class="demiheurediv"><span>0</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>1</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>2</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>3</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>4</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>5</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>6</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>7</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>8</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>9</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>10</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>11</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>12</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>13</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>14</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>15</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>16</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>17</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>18</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>19</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>20</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>21</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>22</span></div>
+<div class="demiheurediv"><span></span></div>
+<div class="demiheurediv"><span>23</span></div>
+<div class="demiheurediv"><span></span></div>
+
+</div>
+
+
+
+	<div id="pompeCanvas">
+	{{#each pompe}}
+	
+	<div class="datepompe yellow {{_id}}">
+            <span>Heure : </span>
+            <!-- <span class="heure">{{ hour heure}}</span> -->
+            <span class="heure"></span>
+            <span>Durée : </span>
+            <span class="dure">0</span>
+            <span class="del right"><i class="material-icons">delete</i></span>
+        </div>
+	
+	{{/each}}
+	
+	</div>
+	</div>
+   </div> 
+   <!-- End tab 4 -->
+
+	
+	
+	
+</div>
+
+</div>
+
+		<div class="col l7 m12 s12">
+		
+		<div id="tabsweekday">
+   <ul>
+        <li><a href="#tabs-day">Day</a></li>
+     <li><a href="#tabs-week">Week</a></li>
+
+  
   </ul>
-  </div>
-  <div class="col s6">
-	<div class="heuretab">
-<div class="qheurediv"><span>0-4</span></div>
-<div class="qheurediv"><span>4-8</span></div>
-<div class="qheurediv"><span>8-12</span></div>
-<div class="qheurediv"><span>12-16</span></div>
-<div class="qheurediv"><span>16-20</span></div>
-<div class="qheurediv"><span>20-0</span></div>
+  <div id="tabs-week"> 
+
+	 <table>
+        <thead>
+          <tr>
+              <th>Heure</th>
+              <th>Lundi</th>
+              <th>Mardi</th>
+              <th>Mercredi</th>
+              <th>Jeudi</th>
+              <th>Vendredi</th>
+              <th>Samedi</th>
+              <th>Dimanche</th>
+          </tr>
+        </thead>
+
+        <tbody>
+		
+		<tr>
+			<td>0-4</td>
+			<td>{{{h "1" "0"}}}</td>
+			<td>{{{h "2" "0"}}}</td>
+			<td>{{{h "3" "0"}}}</td>
+			<td>{{{h "4" "0"}}}</td>
+			<td>{{{h "5" "0"}}}</td>
+			<td>{{{h "6" "0"}}}</td>
+			<td>{{{h "7" "0"}}}</td>
+		</tr>
+		<tr>
+			<td>4-8</td>
+			<td>{{{h "1" "4"}}}</td>
+			<td>{{{h "2" "4"}}}</td>
+			<td>{{{h "3" "4"}}}</td>
+			<td>{{{h "4" "4"}}}</td>
+			<td>{{{h "5" "4"}}}</td>
+			<td>{{{h "6" "4"}}}</td>
+			<td>{{{h "7" "4"}}}</td>
+		</tr>
+		<tr>
+			<td>8-12</td>
+			<td>{{{h "1" "8"}}}</td>
+			<td>{{{h "2" "8"}}}</td>
+			<td>{{{h "3" "8"}}}</td>
+			<td>{{{h "4" "8"}}}</td>
+			<td>{{{h "5" "8"}}}</td>
+			<td>{{{h "6" "8"}}}</td>
+			<td>{{{h "7" "8"}}}</td>
+		</tr>
+		<tr>
+			<td>12-16</td>
+			<td>{{{h "1" "12"}}}</td>
+			<td>{{{h "2" "12"}}}</td>
+			<td>{{{h "3" "12"}}}</td>
+			<td>{{{h "4" "12"}}}</td>
+			<td>{{{h "5" "12"}}}</td>
+			<td>{{{h "6" "12"}}}</td>
+			<td>{{{h "7" "12"}}}</td>
+		</tr>
+		<tr>
+			<td>16-20</td>
+			<td>{{{h "1" "16"}}}</td>
+			<td>{{{h "2" "16"}}}</td>
+			<td>{{{h "3" "16"}}}</td>
+			<td>{{{h "4" "16"}}}</td>
+			<td>{{{h "5" "16"}}}</td>
+			<td>{{{h "6" "16"}}}</td>
+			<td>{{{h "7" "16"}}}</td>
+		</tr>
+		<tr>
+			<td>20-0</td>
+			<td>{{{h "1" "20"}}}</td>
+			<td>{{{h "2" "20"}}}</td>
+			<td>{{{h "3" "20"}}}</td>
+			<td>{{{h "4" "20"}}}</td>
+			<td>{{{h "5" "20"}}}</td>
+			<td>{{{h "6" "20"}}}</td>
+			<td>{{{h "7" "20"}}}</td>
+		</tr>
+		
+		</tbody>
+	</table>
+
 
  
+     
+	
     </div>
-	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{{h "1" "0"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{{h "1" "4"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{{h "1" "8"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{{h "1" "12"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{{h "1" "16"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{{h "1" "20"}}}</span></div>
-	</div>
-	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{{h "2" "0"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{{h "2" "4"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{{h "2" "8"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{{h "2" "12"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{{h "2" "16"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{{h "2" "20"}}}</span></div>
-	</div>
-	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{{h "3" "0"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{{h "3" "4"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{{h "3" "8"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{{h "3" "12"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{{h "3" "16"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{{h "3" "20"}}}</span></div>
-	</div>
-	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{{h "4" "0"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{{h "4" "4"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{{h "4" "8"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{{h "4" "12"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{{h "4" "16"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{{h "4" "20"}}}</span></div>
-	</div>
-	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{{h "5" "0"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{{h "5" "4"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{{h "5" "8"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{{h "5" "12"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{{h "5" "16"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{{h "5" "20"}}}</span></div>
-	</div>
-	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{{h "6" "0"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{{h "6" "4"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{{h "6" "8"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{{h "6" "12"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{{h "6" "16"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{{h "6" "20"}}}</span></div>
-	</div>
-	<div class="daytab">
-		<div class="mesureqheurediv"><span class="lundi-1">{{{h "7" "0"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-2">{{{h "7" "4"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-3">{{{h "7" "8"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-4">{{{h "7" "12"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-5">{{{h "7" "16"}}}</span></div>
-		<div class="mesureqheurediv"><span class="lundi-6">{{{h "7" "20"}}}</span></div>
-	</div>
+	
+	<div id="tabs-day"> 
+
+	 <table>
+        <thead>
+          <tr>
+              <th>Heure</th>
+              <th>Today</th>
+          </tr>
+        </thead>
+
+        <tbody>
+		
+		<tr>
+			<td>0-4</td>
+			<td>{{{t "0"}}}</td>
+		</tr>
+		<tr>
+			<td>4-8</td>
+			<td>{{{t "4"}}}</td>
+		</tr>
+		<tr>
+			<td>8-12</td>
+			<td>{{{t "8"}}}</td>
+		</tr>	
+		<tr>
+			<td>12-16</td>
+			<td>{{{t "12"}}}</td>
+		</tr>
+		<tr>
+			<td>16-20</td>
+			<td>{{{t "16"}}}</td>
+		</tr>
+		<tr>
+			<td>20-0</td>
+			<td>{{{t "20"}}}</td>
+		</tr>
+		</tbody>
+	</table>
+
+
+ 
+     
+	
     </div>
+     </div>
+    </div> 
+		
+		
+	  </div>
+	 
+	<div class="row">
+		<div class="col s12">
+			
+			 <ul class="collection with-header">
+        <li class="collection-header"><h4>Evenements</h4></li>
+        <li class="collection-item">		
+		 <input type="checkbox" id="event_km_pompe" /> <label for="event_km_pompe">Activation de la pompe</label> <div class="center"> Niveau d'humitité supérieur à <div class="input-field inline"><input type="number" min="0" max="100" value="25" name="lvlhum" /> </div>%</div>
+		 </li>
+		 
+		 <li class="collection-item">		
+		 <input type="checkbox" id="event_km_ventil" /> <label for="event_km_ventil">Activation ventilation</label> <div class="center"> Temperature supérieur à <div class="input-field inline"><input type="number" min="10" max="100" value="25" name="lvlhum" /> </div>C</div>
+		 </li>
+		 <li class="collection-item">		
+		 <input type="checkbox" id="event_km_extra" /> <label for="event_km_extra">Activation extraction</label> <div class="center"> Temperature supérieur à <div class="input-field inline"><input type="number" min="10" max="100" value="25" name="lvlhum" /> </div>C</div>
+		 </li>
+		 <li class="collection-item">		
+		 <input type="checkbox" id="event_km_lum" /> <label for="event_km_lum">Activation lumière</label> <div class="center"> Luminosité inférieur à <div class="input-field inline"><input type="number" min="10" max="100" value="25" name="lvlhum" /> </div>lux</div>
+		 </li>
+		 
+		 <li class="collection-item">		
+		 <input type="checkbox" id="event_camera" /> <label for="event_camera">Camera</label> <div class="center"> Prise photo à <div class="input-field inline"> <input type="text" class="timepicker" value="12:00"></div></div>
+		 </li>
+		
+      </ul>
+		</div>
     </div>
-    </div>
+  
+
   
 </template>
 
@@ -311,16 +660,7 @@
 
 </template>
 
-<template name="mode">
 
-<ul class="  collection with-header">
-<li class="collection-header"><h4>Modes</h4></li>
-  <li style="height:70px" class="collection-item">
-  <button class="btn blue">Regulation</button>
-  <button class="btn green">Manuel</button>
-  </li>
-</ul>
-</template>
 
 <template name="alert">
 

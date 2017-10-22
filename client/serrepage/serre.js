@@ -42,7 +42,7 @@ Template.info.helpers({
 	'wath': function() {
 		val = data.findOne({topic:"serre/cp/esp32_0C6E78/amp"}, {sort: {date: -1, limit: 1}})
 		if(val != undefined) {
-		return  parseInt(val.message * 230);
+		return  parseInt(val.message*0.001);
 		} else {
 			return 0.1;
 		}
@@ -95,7 +95,11 @@ drawgraph('ht', 1);
 
 Template.picture.onRendered(function() {
 	
-$('.carousel.carousel-slider').carousel({fullWidth: true});
+$('.carousel').carousel({
+	
+	noWrap:true,
+	indicators:true
+});
 	
 	
 	 
@@ -250,7 +254,7 @@ v = data.find({topic : "serre/cp/esp32_0C6E78/lum",  "date":{"$gte":datea, "$lte
         for(i=0; i<n; i++) {
                 somme += parseInt(v[i].message);
         }
-		lum = Math.round((somme/n*10))/10;
+		lum = Math.round(((somme/n*10)/10)*400);
 		}
 v = data.find({topic : "serre/cp/esp32_0C6E78/ht",  "date":{"$gte":datea, "$lte": datee}}).fetch();
 		var n = v.length; 
@@ -277,7 +281,68 @@ v = data.find({topic : "serre/cp/esp32_0C6E78/humity",  "date":{"$gte":datea, "$
 		}
 		
 		return color(temp, 20, 30, "°C") + "<br>" + color(ht, 20, 80,"%") + "<br>" + color(humity, 20, 70,"%") + "<br>" + color(lum, 1000, 50000,"lux") + "";
+		},
+		't': function(heure) {
+		
+
+date = new Date();
+h= parseInt(heure)+4;
+
+
+datea = new Date(date.getFullYear(), date.getMonth(), date.getDate(), heure);
+datee = new Date(date.getFullYear(), date.getMonth(), date.getDate(), h);
+
+console.log(" heure " + heure + "  " + datea);
+console.log(" heure " + heure + "  " + datee);
+// console.log(datef);
+v = data.find({topic : "serre/cp/esp32_0C6E78/temp",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+		var n = v.length; 
+        var somme = 0;
+		if(v ==0) {
+			temp =  'n/a';
+		} else {
+        for(i=0; i<n; i++) {
+                somme += parseInt(v[i].message);
+        }
+		temp = Math.round((somme/n*10))/10;
 		}
+v = data.find({topic : "serre/cp/esp32_0C6E78/lum",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+		var n = v.length; 
+        var somme = 0;
+		if(v ==0) {
+			lum =  'n/a';
+		} else {
+        for(i=0; i<n; i++) {
+                somme += parseInt(v[i].message);
+        }
+		lum = Math.round(((somme/n*10)/10)*400);
+		}
+v = data.find({topic : "serre/cp/esp32_0C6E78/ht",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+		var n = v.length; 
+        var somme = 0;
+		if(v ==0) {
+			ht =  'n/a';
+		} else {
+        for(i=0; i<n; i++) {
+                somme += parseInt(v[i].message);
+        }
+		ht = Math.round((somme/n*10))/10;
+		}
+
+v = data.find({topic : "serre/cp/esp32_0C6E78/humity",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+		var n = v.length; 
+        var somme = 0;
+		if(v ==0) {
+			humity =  'n/a';
+		} else {
+        for(i=0; i<n; i++) {
+                somme += parseInt(v[i].message);
+        }
+		humity = Math.round((somme/n*10))/10;
+		}
+		
+		return color(temp, 20, 30, "°C") + "<br>" + color(ht, 20, 80,"%") + "<br>" + color(humity, 20, 70,"%") + "<br>" + color(lum, 1000, 50000,"lux") + "";
+		},
 		
 	}
 
@@ -307,6 +372,19 @@ function color(val, s1, s2, unit) {
 
 
 Template.calendrier.onRendered(function() {
+	$( "#tabs" ).tabs();
+	$( "#tabsweekday" ).tabs();
+	 $('.timepicker').pickatime({
+    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+    twelvehour: false, // Use AM/PM or 24-hour format
+    donetext: 'OK', // text for done-button
+    cleartext: 'Clear', // text for clear-button
+    canceltext: 'Cancel', // Text for cancel-button
+    autoclose: true, // automatic close timepicker
+    ampmclickable: true, // make AM PM clickable
+    aftershow: function(){} //Function for after opening timepicker
+  });
 	 $(".objectpompe").draggable({
     	helper:'clone',  containment: "#pompeCanvas", 
     });  
@@ -337,7 +415,7 @@ commande.find().observeChanges({
        
 		$('.'+id).find('.heure').text(pxtohour(hourtopx(doc.heure)));
 		$('.'+id).find('.dure').text(pxtohour(hourtopx(doc.dure)));
-		$('.'+id).css({"left": "0", "top":hourtopx(doc.heure), "height":hourtopx(doc.dure, "position":"absolue")}); 
+		$('.'+id).css({"left": "0", "top":hourtopx(doc.heure), "height":hourtopx(doc.dure), "position":"absolue"}); 
 		$('.'+id).draggable({axis: "y", containment: "#pompeCanvas",scroll: false,
 			drag: function() {
 				pos = $(this).position();
