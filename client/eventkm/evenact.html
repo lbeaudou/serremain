@@ -1,0 +1,43 @@
+<template name="event">
+	<div class="row">
+		<div class="col s12">
+			
+			 <ul class="collection with-header">
+        <li class="collection-header"><h4>Evenements</h4></li>
+        <li class="collection-item">		
+		 <input type="checkbox" id="event_km_pompe" /> <label for="event_km_pompe">Activation de la pompe 	 </label> <div class="center"> Niveau d'humitité inférieur à <div class="input-field inline"><input type="number" min="0" max="100" value="25" class="lvlhum_pompe" name="lvlhum_pompe" /> </div>%</div>
+		 </li>
+	
+		 <li class="collection-item">		
+		 <input type="checkbox" id="event_km_ventil" /> <label for="event_km_ventil">Activation ventilation</label> <div class="center"> Temperature supérieur à <div class="input-field inline"><input type="number" min="10" max="100" value="25" class="lvltemp_ventil" name="lvltemp_ventil" /> </div>C
+		 <br>
+		 	Vitesse : <div class="input-field inline"> <p class="range-field">
+      <input type="range" id="test5" class="lvlspeed_ventil" min="0" max="100" />
+    </p></div>
+		 </div>
+	
+		</li>
+		 <li class="collection-item">		
+		 <input type="checkbox" id="event_km_extra" /> <label for="event_km_extra">Activation extraction</label> <div class="center"> Temperature supérieur à <div class="input-field inline"><input type="number" min="10" max="100" value="25" class="lvltemp_extra" name="lvltemp_extra" /> </div>C
+		 <br>
+		 	Vitesse : <div class="input-field inline"> <p class="range-field">
+      <input type="range" id="test5" class="lvlspeed_extra" min="0" max="100" />
+    </p></div>
+		 
+		 </div>
+		 </li>
+		 <li class="collection-item">		
+		 <input type="checkbox" id="event_km_lum" /> <label for="event_km_lum">Activation lumière</label> <div class="center"> Luminosité inférieur à <div class="input-field inline"><input type="number" min="10" max="100" value="25" class="lvllum_lum" name="lvllum_lum"/> </div>lux</div>
+		 </li>
+		 
+		 <li class="collection-item">		
+		 <input type="checkbox" id="event_camera" /> <label for="event_camera">Camera</label> <div class="center"> Prise photo à <div class="input-field inline"> <input type="text" class="timepicker hour_camera" name="hour_camera" value="12:00"></div></div>
+		 </li>
+		
+      </ul>
+		</div>
+    </div>
+
+
+
+</template>

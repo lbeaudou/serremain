@@ -156,15 +156,16 @@
 </template>
 
 
-<template name="allserre">
+<template name="serre">
+{{>nav}}
  <div class="contain" >
  <div class="row card-panel">
-<div class=" col s6 ">
+<div class=" col l6 m12 s12">
 
  {{> info}} 
  
  </div>
- <div class="col s6 ">
+ <div class="col l6 m12 s12">
   {{> command}}
 
   </div>
@@ -175,4 +176,109 @@
   
  
   </div>
+</template>
+
+<template name="allserre">
+{{>nav}}
+<div class="container">
+	<div class="card-panel">
+			<div class="row">
+				<div class="col l2">
+					<div class="card-panel">
+				<p class="center">
+					<a class="addserre" href="#modal"> <i class="large material-icons">add_box</i></a>
+				</p>
+					</div>
+				</div>
+				{{#each serre}}
+				<div class="col l2">
+					<div class="card-panel">
+					<div class="card-content">
+				
+				<p class="center">
+					 <input type="text" name="noms" class="noms" value="{{nom}}">
+					 <a href="/serre/{{_id}}">
+						<i>{{_id}}</i><br>
+						<i class="material-icons">link</i>
+					 </a>
+				</p>
+				</div>
+					 <div class="card-action">
+								<i class="material-icons delserre">delete</i>
+								<i class="material-icons ">edit</i>
+					</div>
+					</div>	
+				</div>	
+				{{/each}}
+				
+			</div>
+	</div>
+
+</div>
+<div id="modal" class="modal">
+    <div class="modal-content">
+      <h4>Ajouter Serre</h4>
+	  <form class="ajouter_serre">
+	  <div class="row">
+	  <div class="col l12">
+     ID:
+          <div class="input-field inline">
+            <input id="idserre" type="text" class="validate" required="" aria-required="true">
+            <label for="idserre" data-error="id introuvable">id serre</label>
+          </div>
+		</div>
+		<div class="col l12">
+     Nom :
+          <div class="input-field inline">
+            <input id="nameserre" type="text" class="validate" required="" aria-required="true">
+            <label for="nameserre" data-error="wrong">Nom serre</label>
+          </div>
+		</div>
+		<div class="col l12">
+	  <button class="btn green" name="add">Ajouter</button>
+		</div>
+    </div>
+	</form>
+  </div>
+  </div>
+
+</template>
+
+<template name="compte">
+{{>nav}}
+<div class="container">
+	<div class="card-panel">
+	{{#if currentUser}}	
+		<p>Profil :<br>
+		{{#each currentUser.emails}}
+		Email : {{address}}
+		
+		
+		{{/each}}
+		</p>
+	{{else}} 
+	{{> atForm}}
+	
+	{{/if}}
+</div>
+</div>
+
+
+</template>
+
+<template name="nav">
+   <nav>
+    <div class="nav-wrapper green">
+	 <div class="container">
+      <a href="#" class="brand-logo">Serre</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+	  <li><a href="/compte">{{#if currentUser}} Mon compte {{else}} Connexion{{/if}}</a></li>
+       {{#if currentUser}} <li><a href="/serre">Mes serres</a></li> {{/if}}
+        
+        <li><a href="/aide">Aide</a></li>
+      </ul>
+    </div>
+    </div>
+  </nav>
+
 </template>

@@ -93,3 +93,9 @@ position:relative;
 	right:0;
 	
 }
+
+.absolute {
+	
+	position:absolute;
+	right:0;
+}

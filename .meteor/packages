@@ -23,3 +23,7 @@ mfpierre:chartist-js
 iron:router
 materialize:materialize@0.99.0
 mrt:jquery-ui
+accounts-base
+accounts-password
+useraccounts:materialize
+meteortoys:allthings

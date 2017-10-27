@@ -4,7 +4,7 @@ dbstatus = new Mongo.Collection('status');
 commande = new Mongo.Collection('commande');
 Template.info.helpers({
 	'temp': function() {
-		val = data.findOne({topic:"serre/cp/esp32_0C6E78/temp"}, {sort: {date: -1, limit: 1}})
+		val = data.findOne({type:"temp"}, {sort: {date: -1, limit: 1}})
 
 		if(val != undefined) {
 		return Math.round(val.message*100)/100;
@@ -14,7 +14,7 @@ Template.info.helpers({
 		
 	},
 	'humity': function() {
-		val = data.findOne({topic:"serre/cp/esp32_0C6E78/humity"}, {sort: {date: -1, limit: 1}})
+		val = data.findOne({type:"humity"}, {sort: {date: -1, limit: 1}})
 		if(val != undefined) {
 		return Math.round(val.message*100)/100;
 		} else {
@@ -22,7 +22,7 @@ Template.info.helpers({
 		}
 	},
 	'ht': function() {
-		val = data.findOne({topic:"serre/cp/esp32_0C6E78/ht"}, {sort: {date: -1, limit: 1}})
+		val = data.findOne({type:"ht"}, {sort: {date: -1, limit: 1}})
 		if(val != undefined) {
 		return  Math.round(val.message*100)/100;
 		} else {
@@ -30,7 +30,7 @@ Template.info.helpers({
 		}
 	},
 	'lum': function() {
-		val = data.findOne({topic:"serre/cp/esp32_0C6E78/lum"}, {sort: {date: -1, limit: 1}})
+		val = data.findOne({type:"lum"}, {sort: {date: -1, limit: 1}})
 		if(val != undefined) {
 		return  parseInt(val.message * 400);
 		} else {
@@ -40,7 +40,7 @@ Template.info.helpers({
 	},
 	
 	'wath': function() {
-		val = data.findOne({topic:"serre/cp/esp32_0C6E78/amp"}, {sort: {date: -1, limit: 1}})
+		val = data.findOne({type:"amp"}, {sort: {date: -1, limit: 1}})
 		if(val != undefined) {
 		return  parseInt(val.message*0.001);
 		} else {
@@ -50,7 +50,7 @@ Template.info.helpers({
 	},
 	
 	'date': function() {
-		val = data.findOne({topic:"serre/cp/esp32_0C6E78/lum"}, {sort: {date: -1, limit: 1}})
+		val = data.findOne({type:"serre/cp/esp32_0C6E78/lum"}, {sort: {date: -1, limit: 1}})
 		if(val != undefined) {
 		return  val.date;
 		} else {
@@ -59,7 +59,7 @@ Template.info.helpers({
 		
 	},
 	'lvleau': function() {
-		val = data.findOne({topic:"serre/cp/esp32_0C6E78/lvleau"}, {sort: {date: -1, limit: 1}})
+		val = data.findOne({type:"serre/cp/esp32_0C6E78/lvleau"}, {sort: {date: -1, limit: 1}})
 		if(val != undefined) {
 		return  val.date;
 		} else {
@@ -68,7 +68,7 @@ Template.info.helpers({
 		
 	},
 	'lvltropplein': function() {
-		val = data.findOne({topic:"serre/cp/esp32_0C6E78/lvltropplein"}, {sort: {date: -1, limit: 1}})
+		val = data.findOne({type:"serre/cp/esp32_0C6E78/lvltropplein"}, {sort: {date: -1, limit: 1}})
 		if(val != undefined) {
 		return  val.date;
 		} else {
@@ -76,7 +76,16 @@ Template.info.helpers({
 		}
 		
 	},
-	
+	'img': function() {
+		
+	val = dbstatus.findOne({"device":"esp32_0C6E78"})['img'];
+	console.log(val);
+	if(val!='') {
+	return val;
+	} else {
+		return '';
+	}
+	},
 	
 	
 });
@@ -220,7 +229,7 @@ Template.calendrier.helpers({
 	},
 	'h': function(day, heure) {
 		
-
+console.log(this);
 date = new Date();
 offset = (date.getDay() + 6) % 7;
 console.log(offset);
@@ -234,7 +243,7 @@ datee = new Date(date.getFullYear(), date.getMonth(), date.getDate()-offset+pars
 console.log("day " + d + " heure " + heure + "  " + datea);
 console.log("day " + d + " heure " + heure + "  " + datee);
 // console.log(datef);
-v = data.find({topic : "serre/cp/esp32_0C6E78/temp",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+v = data.find({type : "temp",  "date":{"$gte":datea, "$lte": datee}}).fetch();
 		var n = v.length; 
         var somme = 0;
 		if(v ==0) {
@@ -245,7 +254,7 @@ v = data.find({topic : "serre/cp/esp32_0C6E78/temp",  "date":{"$gte":datea, "$lt
         }
 		temp = Math.round((somme/n*10))/10;
 		}
-v = data.find({topic : "serre/cp/esp32_0C6E78/lum",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+v = data.find({type : "lum",  "date":{"$gte":datea, "$lte": datee}}).fetch();
 		var n = v.length; 
         var somme = 0;
 		if(v ==0) {
@@ -256,7 +265,7 @@ v = data.find({topic : "serre/cp/esp32_0C6E78/lum",  "date":{"$gte":datea, "$lte
         }
 		lum = Math.round(((somme/n*10)/10)*400);
 		}
-v = data.find({topic : "serre/cp/esp32_0C6E78/ht",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+v = data.find({type : "ht",  "date":{"$gte":datea, "$lte": datee}}).fetch();
 		var n = v.length; 
         var somme = 0;
 		if(v ==0) {
@@ -268,7 +277,7 @@ v = data.find({topic : "serre/cp/esp32_0C6E78/ht",  "date":{"$gte":datea, "$lte"
 		ht = Math.round((somme/n*10))/10;
 		}
 
-v = data.find({topic : "serre/cp/esp32_0C6E78/humity",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+v = data.find({type : "humity",  "date":{"$gte":datea, "$lte": datee}}).fetch();
 		var n = v.length; 
         var somme = 0;
 		if(v ==0) {
@@ -295,7 +304,7 @@ datee = new Date(date.getFullYear(), date.getMonth(), date.getDate(), h);
 console.log(" heure " + heure + "  " + datea);
 console.log(" heure " + heure + "  " + datee);
 // console.log(datef);
-v = data.find({topic : "serre/cp/esp32_0C6E78/temp",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+v = data.find({type : "temp",  "date":{"$gte":datea, "$lte": datee}}).fetch();
 		var n = v.length; 
         var somme = 0;
 		if(v ==0) {
@@ -306,7 +315,7 @@ v = data.find({topic : "serre/cp/esp32_0C6E78/temp",  "date":{"$gte":datea, "$lt
         }
 		temp = Math.round((somme/n*10))/10;
 		}
-v = data.find({topic : "serre/cp/esp32_0C6E78/lum",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+v = data.find({type : "lum",  "date":{"$gte":datea, "$lte": datee}}).fetch();
 		var n = v.length; 
         var somme = 0;
 		if(v ==0) {
@@ -317,7 +326,7 @@ v = data.find({topic : "serre/cp/esp32_0C6E78/lum",  "date":{"$gte":datea, "$lte
         }
 		lum = Math.round(((somme/n*10)/10)*400);
 		}
-v = data.find({topic : "serre/cp/esp32_0C6E78/ht",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+v = data.find({type : "ht",  "date":{"$gte":datea, "$lte": datee}}).fetch();
 		var n = v.length; 
         var somme = 0;
 		if(v ==0) {
@@ -329,7 +338,7 @@ v = data.find({topic : "serre/cp/esp32_0C6E78/ht",  "date":{"$gte":datea, "$lte"
 		ht = Math.round((somme/n*10))/10;
 		}
 
-v = data.find({topic : "serre/cp/esp32_0C6E78/humity",  "date":{"$gte":datea, "$lte": datee}}).fetch();
+v = data.find({type : "humity",  "date":{"$gte":datea, "$lte": datee}}).fetch();
 		var n = v.length; 
         var somme = 0;
 		if(v ==0) {
@@ -352,14 +361,14 @@ v = data.find({topic : "serre/cp/esp32_0C6E78/humity",  "date":{"$gte":datea, "$
 function color(val, s1, s2, unit) {
 	if(val != 'n/a') {
 	if(val < s1) {
-		return "<span class='blue'>"+val+" " + unit +"</span>";
+		return "<span class='blue  lighten-3'>"+val+" " + unit +"</span>";
 	} else {
 		
 		if(val >=s1 && val <s2) {
-			return "<span class='green'>"+val+" " + unit +"</span>";
+			return "<span class='green  lighten-3'>"+val+" " + unit +"</span>";
 		} else {
 			
-			return "<span class='red'>"+val+" " + unit +"</span>";
+			return "<span class='red  lighten-3'>"+val+" " + unit +"</span>";
 			
 		}
 		
@@ -370,21 +379,93 @@ function color(val, s1, s2, unit) {
 	
 }
 
+Template.serre.onRendered(function() {
+	console.log(this);
+})
+Template.allserre.onRendered(function() {
+	$('.modal').modal();
+});
 
-Template.calendrier.onRendered(function() {
+Template.allserre.events({
+	'submit .ajouter_serre': function(e) {
+		e.preventDefault();		
+		target = e.target;
+		id = target.idserre.value;
+		nom = target.nameserre.value;
+		if(id != '' && nom != '') {
+			
+			console.log(id);
+			console.log(nom);
+			if(Meteor.user()) {
+			Meteor.call('addserre', id, nom, function(e, r) {
+				console.log(e);
+				console.log(r);
+				if(r == 0) {
+					
+					$('#idserre').removeClass("valid");
+					$('#idserre').addClass("invalid");
+				} else {
+					if(r == 1) {
+						$('.ajouter_serre')[0].reset();
+						$('.modal').modal('close');
+						
+						
+					}
+					
+				}
+				
+			})
+			
+			}
+			
+		}
+	},
+	'click .delserre': function()  {
+		
+		if(Meteor.user()) {
+			conf = confirm('Voullez vous supprimer la serre ' + this.nom+' ?', 'Oui', 'Non');
+			if(conf) {
+			Meteor.call('removeserre', this._id, this.nom, function(e, r) {
+				console.log(e);
+				console.log(r);
+				
+			})
+			}
+		}
+		
+		
+	},
+	'change .noms':function(e) {
+		if(Meteor.user()) {
+			newv = e.currentTarget.value;
+			console.log(this);
+			Meteor.call('updateserre', this._id, this.nom, newv, function(e, r) {
+				console.log(e);
+				console.log(r);
+				
+			})
+		}
+		
+	}
+	
+	
+});
+
+Template.allserre.helpers({
+	'serre': function() {
+		console.log(Meteor.users.find(Meteor.user).fetch());
+		val = Meteor.users.findOne(Meteor.user);
+		return val.profile.serre;
+		
+	}
+	
+})
+	
+	Template.calendrier.onRendered(function() {
+		console.log(this);
 	$( "#tabs" ).tabs();
 	$( "#tabsweekday" ).tabs();
-	 $('.timepicker').pickatime({
-    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
-    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
-    twelvehour: false, // Use AM/PM or 24-hour format
-    donetext: 'OK', // text for done-button
-    cleartext: 'Clear', // text for clear-button
-    canceltext: 'Cancel', // Text for cancel-button
-    autoclose: true, // automatic close timepicker
-    ampmclickable: true, // make AM PM clickable
-    aftershow: function(){} //Function for after opening timepicker
-  });
+	
 	 $(".objectpompe").draggable({
     	helper:'clone',  containment: "#pompeCanvas", 
     });  
@@ -542,16 +623,18 @@ Template.command.helpers({
 	},
 	
 	
+	
+	
 })
 
 function drawgraph(mesure, func) {
 	
 	
-	var topic = "serre/cp/esp32_0C6E78/" + mesure;
+	var type = mesure;
 	classmesure = '.graphique' + mesure;
 	limit = 50;
-	val = data.find({topic}, {sort: {date: 1}, limit}).fetch();
-	valt = data.find({topic}, {sort: {date: 1}, limit});
+	val = data.find({type}, {sort: {date: 1}, limit}).fetch();
+	valt = data.find({type}, {sort: {date: 1}, limit});
 		var v = [];
 		var lab = [];
 		
@@ -569,10 +652,10 @@ function drawgraph(mesure, func) {
 		},
 		);
 	
-	data.find({topic}).observeChanges({
+	data.find({type}).observeChanges({
    addedBefore: function () {
 		
-			val = data.find({topic}, {sort: {date: 1}, limit}).fetch();
+			val = data.find({type}, {sort: {date: 1}, limit}).fetch();
 			// console.log(val);
 		var v = [];
 		var lab = [];
@@ -595,13 +678,6 @@ function drawgraph(mesure, func) {
 	
 }
 
-
-// Router.configure({
-	 // layoutTemplate: '',
-
- 
-
-// });
 
 
 
