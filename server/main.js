@@ -6,6 +6,7 @@ commande = new Mongo.Collection('commande');
 serre = new Mongo.Collection('serre');
 
 Meteor.startup(() => {
+	serre.insert({"serre": "esp32_0C6E7", date: new Date()});
  var mqtt = require('mqtt'); 
 
 var client = mqtt.connect('mqtt://broker.mqttdashboard.com:1883');
