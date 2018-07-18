@@ -19,11 +19,11 @@ shell-server@0.2.4            # Server-side component of the `meteor shell` comm
 
 insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
 mkarliner:mqtt
-mfpierre:chartist-js
+#mfpierre:chartist-js
 iron:router
-materialize:materialize@0.99.0
-mrt:jquery-ui
+#materialize:materialize
 accounts-base
 accounts-password
 useraccounts:materialize
 meteortoys:allthings
+session

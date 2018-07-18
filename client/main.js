@@ -17,10 +17,10 @@ Template.mainpage.onRendered(function() {
       startingTop: '4%', // Starting top style attribute
       endingTop: '10%', // Ending top style attribute
       ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-        alert("Ready");
+        
         console.log(modal, trigger);
       },
-      complete: function() { alert('Closed'); } // Callback for Modal close
+      complete: function() {  } // Callback for Modal close
     }
   );
 

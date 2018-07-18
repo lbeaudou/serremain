@@ -1,0 +1,61 @@
+<template name="alarm">
+	<div class="row">
+		<div class="col s12">
+			
+			 <ul class="collection with-header">
+        <li class="collection-header"><h4>Alarmes</h4></li>
+        <li class="collection-item">		
+		 <input type="checkbox" id="alarm_niveau_eau" /> <label for="alarm_niveau_eau">Alarme niveau d'eau trop bas</label> <div class="center"> </div>
+		 </li>
+
+
+        <li class="collection-item">		
+		 <input type="checkbox" id="alarm_temp_eau" /> <label for="alarm_temp_eau">Alarme temperature de l'eau	 </label> 
+		 <div class="center"> Temperature trop base : <div class="input-field inline"><input type="number" min="-100" max="100" value="19" class="alarm_temp_eau_bas" name="alarm_temp_eau_bas" /> </div>°C</div>
+		 <div class="center"> Temperature trop haute : <div class="input-field inline"><input type="number" min="-100" max="100" value="24" class="alarm_temp_eau_haut" name="alarm_temp_eau_haut" /> </div>°C</div>
+		 </li>
+
+		<li class="collection-item">		
+		 <input type="checkbox" id="alarm_temp_air" /> <label for="alarm_temp_air">Alarme temperature de l'air	 </label> 
+		 <div class="center"> Temperature trop base : <div class="input-field inline"><input type="number" min="-100" max="100" value="19" class="alarm_temp_air_bas" name="alarm_temp_air_bas" /> </div>°C</div>
+		 <div class="center"> Temperature trop haute : <div class="input-field inline"><input type="number" min="-100" max="100" value="24" class="alarm_temp_air_haut" name="alarm_temp_air_haut" /> </div>°C</div>
+		 <div class="center"> Monter en temperature, nombre de degrès pris en 5min : <div class="input-field inline"><input type="number" min="0" max="100" value="5" class="alarm_temp_air_monter" name="alarm_temp_air_monter" /> </div>°C</div>
+		 </li>
+
+		 <li class="collection-item">		
+		 <input type="checkbox" id="alarm_lum" /> <label for="alarm_lum">Alarme luminosité	 </label> 
+		 <div class="center">Luminité minimum par heure sur 24h : <div class="input-field inline"><input type="number" min="0" max="100000000" value="19" class="alarm_lum_luxh" name="alarm_lum" /> </div>lux/h
+		</div>
+		 
+		 </li>
+	
+		 
+      </ul>
+		</div>
+    </div>
+
+</template>
+
+<template name="showalarm">
+	<ul class="  collection with-header">
+<li class="collection-header"><h4>Alarmes</h4></li>
+  <li>
+<table>
+	<tbody>
+		<tr><th>Alarme</th>
+			<th>Date</th>
+			<th>Status</th>
+		</tr>
+		{{#each alarm}}
+		<tr>
+			<td>{{value}}</td>
+			<td>{{date}}</td>
+			<td>{{status}}</td>
+		</tr>
+		{{/each}}
+	</tbody>
+</table>
+</li>
+</ul>
+
+</template>

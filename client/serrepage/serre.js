@@ -2,55 +2,26 @@
 data = new Mongo.Collection('data');
 dbstatus = new Mongo.Collection('status');
 commande = new Mongo.Collection('commande');
+serre = new Mongo.Collection('serre');
+img = new Mongo.Collection('img');
+sensordata = new Mongo.Collection('sensordata');
+alarm = new Mongo.Collection('alarmdata');
 Template.info.helpers({
-	'temp': function() {
-		val = data.findOne({type:"temp"}, {sort: {date: -1, limit: 1}})
+	'sensor': function() {
 
-		if(val != undefined) {
-		return Math.round(val.message*100)/100;
-		} else {
-			return 0;
-		}
+		return sensordata.findOne({}, {sort: {date: -1, limit: 1}});
+	},
+	'round': function(val) {
 		
-	},
-	'humity': function() {
-		val = data.findOne({type:"humity"}, {sort: {date: -1, limit: 1}})
-		if(val != undefined) {
-		return Math.round(val.message*100)/100;
-		} else {
-			return 0;
-		}
-	},
-	'ht': function() {
-		val = data.findOne({type:"ht"}, {sort: {date: -1, limit: 1}})
-		if(val != undefined) {
-		return  Math.round(val.message*100)/100;
-		} else {
-			return 0;
-		}
-	},
-	'lum': function() {
-		val = data.findOne({type:"lum"}, {sort: {date: -1, limit: 1}})
-		if(val != undefined) {
-		return  parseInt(val.message * 400);
-		} else {
-			return 0;
-		}
+
 		
-	},
-	
-	'wath': function() {
-		val = data.findOne({type:"amp"}, {sort: {date: -1, limit: 1}})
-		if(val != undefined) {
-		return  parseInt(val.message*0.001);
-		} else {
-			return 0.1;
-		}
+		return Math.round(val*100)/100;
+		
 		
 	},
 	
 	'date': function() {
-		val = data.findOne({type:"serre/cp/esp32_0C6E78/lum"}, {sort: {date: -1, limit: 1}})
+		val = data.findOne({}, {sort: {date: -1, limit: 1}})
 		if(val != undefined) {
 		return  val.date;
 		} else {
@@ -58,28 +29,19 @@ Template.info.helpers({
 		}
 		
 	},
-	'lvleau': function() {
-		val = data.findOne({type:"serre/cp/esp32_0C6E78/lvleau"}, {sort: {date: -1, limit: 1}})
-		if(val != undefined) {
-		return  val.date;
-		} else {
-			return 0;
-		}
+	'lvleau': function(val) {
 		
-	},
-	'lvltropplein': function() {
-		val = data.findOne({type:"serre/cp/esp32_0C6E78/lvltropplein"}, {sort: {date: -1, limit: 1}})
-		if(val != undefined) {
-		return  val.date;
+		if(val == "1") {
+		return  "<p><i class='material-icons'>battery_charging_full</i></p>";
 		} else {
-			return 0;
+			return  "<p><i class='material-icons'>battery_alert </i></p>";
 		}
 		
 	},
 	'img': function() {
 		
-	val = dbstatus.findOne({"device":"esp32_0C6E78"})['img'];
-	console.log(val);
+	val = dbstatus.findOne({"device":this.toString()})['img'];
+	
 	if(val!='') {
 	return val;
 	} else {
@@ -104,19 +66,26 @@ drawgraph('ht', 1);
 
 Template.picture.onRendered(function() {
 	
-$('.carousel').carousel({
+
 	
-	noWrap:true,
-	indicators:true
-});
-	
+	// $('.materialboxed').materialbox();
+	 
+})
+
+Template.picture.helpers({
+	'image': function() {
+		
+		return img.find({device: this.toString()}, {sort: {date: -1, limit: 8}});
+		
+	}
 	
 	 
 })
 
 function addeventkm(type, heure, dure) {
-	
+	serre = Session.get('serre')
 	data = {
+		'device':serre,
 		'km':type,
 		'heure':heure,
 		'dure':dure
@@ -158,229 +127,17 @@ valh = 60;
 	return(sec);
 }
 
-Template.calendrier.events({
-	
-	'click .del': function() {
-		
-		// commande.remove(this);
-		console.log(this);
-		Meteor.call('removeeventkm', this);
-	},
-	'dragstop .datepompe': function(e) {
-		console.log(this);
-		console.log(e);
-		
-		target = e.currentTarget;
-		pxtop = $(target).position();
-		pxtop = pos.top;
-		pxheight = $(target).height();
-		console.log(pxtohournum(pxtop));
-		console.log(pxheight);
-		Meteor.call('uptageeventkm',this, pxtohournum(pxtop), pxtohournum(pxheight));
-	},
-	
-	'drag .datepompe': function(e) {
-		console.log(this);
-		console.log(e);
-		
-		target = e.currentTarget;
-		pos = $(target).position()
-		pxtop = pos.top;
-		pxheight = target.offsetHeight;
-	
-		console.log('heure :' + pxtohournum(pxtop));
-		  // $('.' + this._id).find('.heure').text(pxtohournum(pxtop));
-		  $(target).find('.heure').text(pxtohour(pxtop));
-	},
-	'resizestop .datepompe':function(e) {
-		console.log(this);
-		console.log(e);
-		
-	
-		target = e.currentTarget;
-		pos = $(target).position();
-		pxtop = pos.top;
-		pxheight = $(target).height();
-		console.log(pxtop);
-		console.log(pxheight);
-		Meteor.call('uptageeventkm',this, pxtohournum(pxtop), pxtohournum(pxheight));
-		
-		
-		
-	},
-	'resize .datepompe':function(e) {
-		console.log(this);
-		console.log(e);
-		
-		target = e.currentTarget;
-		pos = $(target).height();
-		$(target).find('.dure').text(pxtohour(pos));
-	}
-	
-	
-	
-})
-
-Template.calendrier.helpers({
-	
-	'pompe': function() {
-		
-		return commande.find();
-	},
-	'h': function(day, heure) {
-		
-console.log(this);
-date = new Date();
-offset = (date.getDay() + 6) % 7;
-console.log(offset);
-d = offset+parseInt(day)-1;
-h= parseInt(heure)+4;
 
 
-datea = new Date(date.getFullYear(), date.getMonth(), date.getDate()-offset+parseInt(day)-1, heure);
-datee = new Date(date.getFullYear(), date.getMonth(), date.getDate()-offset+parseInt(day)-1, h);
-
-console.log("day " + d + " heure " + heure + "  " + datea);
-console.log("day " + d + " heure " + heure + "  " + datee);
-// console.log(datef);
-v = data.find({type : "temp",  "date":{"$gte":datea, "$lte": datee}}).fetch();
-		var n = v.length; 
-        var somme = 0;
-		if(v ==0) {
-			temp =  'n/a';
-		} else {
-        for(i=0; i<n; i++) {
-                somme += parseInt(v[i].message);
-        }
-		temp = Math.round((somme/n*10))/10;
-		}
-v = data.find({type : "lum",  "date":{"$gte":datea, "$lte": datee}}).fetch();
-		var n = v.length; 
-        var somme = 0;
-		if(v ==0) {
-			lum =  'n/a';
-		} else {
-        for(i=0; i<n; i++) {
-                somme += parseInt(v[i].message);
-        }
-		lum = Math.round(((somme/n*10)/10)*400);
-		}
-v = data.find({type : "ht",  "date":{"$gte":datea, "$lte": datee}}).fetch();
-		var n = v.length; 
-        var somme = 0;
-		if(v ==0) {
-			ht =  'n/a';
-		} else {
-        for(i=0; i<n; i++) {
-                somme += parseInt(v[i].message);
-        }
-		ht = Math.round((somme/n*10))/10;
-		}
-
-v = data.find({type : "humity",  "date":{"$gte":datea, "$lte": datee}}).fetch();
-		var n = v.length; 
-        var somme = 0;
-		if(v ==0) {
-			humity =  'n/a';
-		} else {
-        for(i=0; i<n; i++) {
-                somme += parseInt(v[i].message);
-        }
-		humity = Math.round((somme/n*10))/10;
-		}
-		
-		return color(temp, 20, 30, "°C") + "<br>" + color(ht, 20, 80,"%") + "<br>" + color(humity, 20, 70,"%") + "<br>" + color(lum, 1000, 50000,"lux") + "";
-		},
-		't': function(heure) {
-		
-
-date = new Date();
-h= parseInt(heure)+4;
 
 
-datea = new Date(date.getFullYear(), date.getMonth(), date.getDate(), heure);
-datee = new Date(date.getFullYear(), date.getMonth(), date.getDate(), h);
-
-console.log(" heure " + heure + "  " + datea);
-console.log(" heure " + heure + "  " + datee);
-// console.log(datef);
-v = data.find({type : "temp",  "date":{"$gte":datea, "$lte": datee}}).fetch();
-		var n = v.length; 
-        var somme = 0;
-		if(v ==0) {
-			temp =  'n/a';
-		} else {
-        for(i=0; i<n; i++) {
-                somme += parseInt(v[i].message);
-        }
-		temp = Math.round((somme/n*10))/10;
-		}
-v = data.find({type : "lum",  "date":{"$gte":datea, "$lte": datee}}).fetch();
-		var n = v.length; 
-        var somme = 0;
-		if(v ==0) {
-			lum =  'n/a';
-		} else {
-        for(i=0; i<n; i++) {
-                somme += parseInt(v[i].message);
-        }
-		lum = Math.round(((somme/n*10)/10)*400);
-		}
-v = data.find({type : "ht",  "date":{"$gte":datea, "$lte": datee}}).fetch();
-		var n = v.length; 
-        var somme = 0;
-		if(v ==0) {
-			ht =  'n/a';
-		} else {
-        for(i=0; i<n; i++) {
-                somme += parseInt(v[i].message);
-        }
-		ht = Math.round((somme/n*10))/10;
-		}
-
-v = data.find({type : "humity",  "date":{"$gte":datea, "$lte": datee}}).fetch();
-		var n = v.length; 
-        var somme = 0;
-		if(v ==0) {
-			humity =  'n/a';
-		} else {
-        for(i=0; i<n; i++) {
-                somme += parseInt(v[i].message);
-        }
-		humity = Math.round((somme/n*10))/10;
-		}
-		
-		return color(temp, 20, 30, "°C") + "<br>" + color(ht, 20, 80,"%") + "<br>" + color(humity, 20, 70,"%") + "<br>" + color(lum, 1000, 50000,"lux") + "";
-		},
-		
-	}
-
-
-)
-
-function color(val, s1, s2, unit) {
-	if(val != 'n/a') {
-	if(val < s1) {
-		return "<span class='blue  lighten-3'>"+val+" " + unit +"</span>";
-	} else {
-		
-		if(val >=s1 && val <s2) {
-			return "<span class='green  lighten-3'>"+val+" " + unit +"</span>";
-		} else {
-			
-			return "<span class='red  lighten-3'>"+val+" " + unit +"</span>";
-			
-		}
-		
-	}
-	} else {
-		return "<span class='grey-text'>"+val+" " + unit +"</span>";
-	}
-	
-}
 
 Template.serre.onRendered(function() {
-	console.log(this);
+
+	console.log(this.data);
+	Session.set('serre', this.data);
+
+	
 })
 Template.allserre.onRendered(function() {
 	$('.modal').modal();
@@ -541,9 +298,11 @@ var tab_mois=new Array("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "J
 
 
 Template.command.events({
-	'click .km_1_on': function() {
+	'click .km_1_on, change .lvl_km_1': function() {
 	console.log('go');
-		Meteor.call('km', 'km_1', '1');
+	m = $('.lvl_km_1').val();
+		Meteor.call('km', 'km_1', m.toString());
+
 		
 	},'click .km_1_off': function() {
 	
@@ -559,22 +318,15 @@ Template.command.events({
 		Meteor.call('km', 'km_2', '0');
 		
 	},
-	'click .km_3_on': function() {
+	'click .km_3_on, change .lvl_km_3': function() {
 	console.log('go');
-		Meteor.call('km', 'km_3', '1');
-		
-	},'click .km_3_off': function() {
-	
-		Meteor.call('km', 'km_3', '0');
+	m = $('.lvl_km_3').val();
+		Meteor.call('km', 'km_3', m.toString());
 		
 	},
-	'click .km_4_on': function() {
-	console.log('go');
-		Meteor.call('km', 'km_4', '1');
-		
-	},'click .km_4_off': function() {
+	'click .km_3_off': function() {
 	
-		Meteor.call('km', 'km_4', '0');
+		Meteor.call('km', 'km_3', '0');
 		
 	},
 	
@@ -582,10 +334,10 @@ Template.command.events({
 })
 Template.command.helpers({
 	'km_1': function() {
-		
-	val = dbstatus.findOne({"device":"esp32_0C6E78"})['km_1'];
+
+	val = dbstatus.findOne({"device":this.toString()})['km_1'];
 	console.log(val);
-	if(val == 1) {
+	if(val > 0) {
 		return true;
 	} else {
 	return false;
@@ -593,9 +345,9 @@ Template.command.helpers({
 	},
 	'km_2': function() {
 		
-	val = dbstatus.findOne({"device":"esp32_0C6E78"})['km_2'];
+	val = dbstatus.findOne({"device":this.toString()})['km_2'];
 	console.log(val);
-	if(val == 1) {
+	if(val > 0) {
 		return true;
 	} else {
 	return false;
@@ -603,24 +355,15 @@ Template.command.helpers({
 	},
 	'km_3': function() {
 		
-	val = dbstatus.findOne({"device":"esp32_0C6E78"})['km_3'];
+	val = dbstatus.findOne({"device":this.toString()})['km_3'];
 	console.log(val);
-	if(val == 1) {
+	if(val > 0) {
 		return true;
 	} else {
 	return false;
 	}
 	},
-	'km_4': function() {
-		
-	val = dbstatus.findOne({"device":"esp32_0C6E78"})['km_4'];
-	console.log(val);
-	if(val == 1) {
-		return true;
-	} else {
-	return false;
-	}
-	},
+
 	
 	
 	

@@ -1,17 +1,20 @@
 <head>
   <title>serre</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> 
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  
-<link rel="stylesheet" href="/resources/demos/style.css"> 
- 
-  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-  <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!-- Compiled and minified JavaScript -->
  
 </head>
 
 <body class="green lighten-2">
  
+
 
 
 </body>
@@ -167,12 +170,15 @@
  </div>
  <div class="col l6 m12 s12">
   {{> command}}
+{{> showalarm}}
+  </div>
+  </div>
 
-  </div>
-  </div>
   {{> calendrier}}
+  {{>event}}
+  {{>alarm}}
   {{> picture}}
-  {{> graph}}
+  <!-- {{> graph}} -->
   
  
   </div>
@@ -182,14 +188,30 @@
 {{>nav}}
 <div class="container">
 	<div class="card-panel">
+    <h4>Ajouter Serre</h4>
+    <form class="ajouter_serre">
+    <div class="row">
+    <div class="col l12">
+     ID:
+          <div class="input-field inline">
+            <input id="idserre" type="text" class="validate" required="" aria-required="true">
+            <label for="idserre" data-error="id introuvable">id serre</label>
+          </div>
+    </div>
+    <div class="col l12">
+     Nom :
+          <div class="input-field inline">
+            <input id="nameserre" type="text" class="validate" required="" aria-required="true">
+            <label for="nameserre" data-error="wrong">Nom serre</label>
+          </div>
+    </div>
+    <div class="col l12">
+    <button class="btn green" name="add">Ajouter</button>
+    </div>
+    </div>
+  </form>
 			<div class="row">
-				<div class="col l2">
-					<div class="card-panel">
-				<p class="center">
-					<a class="addserre" href="#modal"> <i class="large material-icons">add_box</i></a>
-				</p>
-					</div>
-				</div>
+				
 				{{#each serre}}
 				<div class="col l2">
 					<div class="card-panel">
@@ -215,30 +237,9 @@
 	</div>
 
 </div>
-<div id="modal" class="modal">
+<div id="modal1" class="modal modal1">
     <div class="modal-content">
-      <h4>Ajouter Serre</h4>
-	  <form class="ajouter_serre">
-	  <div class="row">
-	  <div class="col l12">
-     ID:
-          <div class="input-field inline">
-            <input id="idserre" type="text" class="validate" required="" aria-required="true">
-            <label for="idserre" data-error="id introuvable">id serre</label>
-          </div>
-		</div>
-		<div class="col l12">
-     Nom :
-          <div class="input-field inline">
-            <input id="nameserre" type="text" class="validate" required="" aria-required="true">
-            <label for="nameserre" data-error="wrong">Nom serre</label>
-          </div>
-		</div>
-		<div class="col l12">
-	  <button class="btn green" name="add">Ajouter</button>
-		</div>
-    </div>
-	</form>
+      
   </div>
   </div>
 

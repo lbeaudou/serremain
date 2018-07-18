@@ -2,26 +2,25 @@
 
 <template name="info">
 	<ul class="  collection with-header">
-<li class="collection-header"><h4>Info </h4></li>
+<li class="collection-header"><h4>Info {{{lvleau sensor.lvleau}}}</h4></li>
   <li style="height:70px" class="collection-item">
 	<div class="row">
-			<div class="col s2"> <p><b >{{temp}} °C</b></p></div>
-			<div class="col s2"> <p><b  >{{humity}} %</b></p></div>
-			<div class="col s2"><p><b  >{{ht}} %</b></p></div>
-			<div class="col s2"><p><b  >{{lum}} lux</b></p></div>
-			<div class="col s2"><p><b  >{{wath}} w</b></p></div>
-			<div class="col s1"><p><i class="material-icons">{{#if lvleau}} battery_charging_full {{else}} battery_alert {{/if}}</i></p></div>
-			<div class="col s1"><p><i class="material-icons">{{#if lvltropplein}} delete {{else}} delete_forever {{/if}}</i></p></div>
- 
+			<div class="col s2"> <p><b>air<br>{{round sensor.temp}} °C</b></p></div>
+			<div class="col s2"> <p><b>air<br>{{round sensor.humidity}} %</b></p></div>
+			<div class="col s2"> <p><b>eau<br>{{round sensor.temp_eau}} °C</b></p></div>
+			<div class="col s2"><p><b>bac<br>{{round sensor.ht}} %</b></p></div>
+			<div class="col s2"><p><b>{{round sensor.lum}} lux</b></p></div>
+			<div class="col s2"><p><b>{{round sensor.amp}} w</b></p></div>
 	</div>
+
  </li>
 
  
  <li style="height:70px" class="collection-item">
- <p><i>Last update : {{date}}</i></p>
+ <p><i>Last update : {{sensor.date}}</i></p>
  </li> 
  
- <li style="width:100%;height:500px;background-image: url({{img}}); background-repeat:no-repeat;background-position:center center;" class="collection-item">
+ <li style="width:100%;height:500px;background-image: url('data:image/png;base64,{{img}}'); background-repeat:no-repeat;background-position:center center;" class="collection-item">
  <!-- <img src="" class="imgtop"> -->
  </li>
  </ul>
@@ -67,11 +66,15 @@
 
 <div class="col s12 ">
  <div class="carousel">
-    <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
-    <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
-    <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
-    <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
-    <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
+
+ <div class="row">
+ {{#each image}}
+ <div class="col l3">
+   <img class="materialboxed" data-caption="{{date}}" style="width:100%;" src="data:image/png;base64,{{img}}"><br>
+   <center><b>{{{date}}}</b></center><br>
+ </div>
+ {{/each}}
+ </div>
   </div>
 
 </div>
@@ -79,491 +82,7 @@
 
 </template>
 
-<template name="calendrier">
-<div class="row">
-<div class="col l5 m12 s12">
 
-<div id="tabs">
-  <ul>
-    <li><a href="#tabs-1">Pompe</a></li>
-    <li><a href="#tabs-2">Ventilation</a></li>
-    <li><a href="#tabs-3">Extraction</a></li>
-    <li><a href="#tabs-4">LED</a></li>
-  </ul>
-  <div id="tabs-1">
-  
-  <div class="add objectpompe">
-  <i class="large material-icons">add_box</i></div>
-    <div class="calender_container">
-	
-<div class="heuretab">
-<div class="demiheurediv"><span>0</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>1</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>2</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>3</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>4</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>5</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>6</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>7</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>8</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>9</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>10</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>11</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>12</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>13</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>14</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>15</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>16</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>17</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>18</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>19</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>20</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>21</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>22</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>23</span></div>
-<div class="demiheurediv"><span></span></div>
-
-</div>
-
-
-
-	<div id="pompeCanvas">
-	{{#each pompe}}
-	
-	<div class="datepompe blue {{_id}}">
-            <span>Heure : </span>
-            <!-- <span class="heure">{{ hour heure}}</span> -->
-            <span class="heure"></span>
-            <span>Durée : </span>
-            <span class="dure">0</span>
-            <span class="del right"><i class="material-icons">delete</i></span>
-        </div>
-	
-	{{/each}}
-	
-	</div>
-	</div>
-   </div> 
-   <!-- End tab 1 --> 
-
-   <div id="tabs-2">
-  
-  <div class="add objectpompe">
-  <i class="large material-icons">add_box</i></div>
-    <div class="calender_container">
-	
-<div class="heuretab">
-<div class="demiheurediv"><span>0</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>1</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>2</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>3</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>4</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>5</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>6</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>7</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>8</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>9</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>10</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>11</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>12</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>13</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>14</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>15</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>16</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>17</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>18</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>19</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>20</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>21</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>22</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>23</span></div>
-<div class="demiheurediv"><span></span></div>
-
-</div>
-
-
-
-	<div id="pompeCanvas">
-	{{#each pompe}}
-	
-	<div class="datepompe grey {{_id}}">
-            <span>Heure : </span>
-            <!-- <span class="heure">{{ hour heure}}</span> -->
-            <span class="heure"></span>
-            <span>Durée : </span>
-            <span class="dure">0</span>
-            <span class="del right"><i class="material-icons">delete</i></span>
-        </div>
-	
-	{{/each}}
-	
-	</div>
-	</div>
-   </div> 
-   <!-- End tab 2 -->  
-   <div id="tabs-3">
-  
-  <div class="add objectpompe">
-  <i class="large material-icons">add_box</i></div>
-    <div class="calender_container">
-	
-<div class="heuretab">
-<div class="demiheurediv"><span>0</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>1</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>2</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>3</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>4</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>5</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>6</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>7</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>8</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>9</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>10</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>11</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>12</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>13</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>14</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>15</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>16</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>17</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>18</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>19</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>20</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>21</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>22</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>23</span></div>
-<div class="demiheurediv"><span></span></div>
-
-</div>
-
-
-
-	<div id="pompeCanvas">
-	{{#each pompe}}
-	
-	<div class="datepompe green {{_id}}">
-            <span>Heure : </span>
-            <!-- <span class="heure">{{ hour heure}}</span> -->
-            <span class="heure"></span>
-            <span>Durée : </span>
-            <span class="dure">0</span>
-            <span class="del right"><i class="material-icons">delete</i></span>
-        </div>
-	
-	{{/each}}
-	
-	</div>
-	</div>
-   </div> 
-   <!-- End tab 3 --> 
-
-   <div id="tabs-4">
-  
-  <div class="add objectpompe">
-  <i class="large material-icons">add_box</i></div>
-    <div class="calender_container">
-	
-<div class="heuretab">
-<div class="demiheurediv"><span>0</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>1</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>2</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>3</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>4</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>5</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>6</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>7</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>8</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>9</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>10</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>11</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>12</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>13</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>14</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>15</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>16</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>17</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>18</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>19</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>20</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>21</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>22</span></div>
-<div class="demiheurediv"><span></span></div>
-<div class="demiheurediv"><span>23</span></div>
-<div class="demiheurediv"><span></span></div>
-
-</div>
-
-
-
-	<div id="pompeCanvas">
-	{{#each pompe}}
-	
-	<div class="datepompe yellow {{_id}}">
-            <span>Heure : </span>
-            <!-- <span class="heure">{{ hour heure}}</span> -->
-            <span class="heure"></span>
-            <span>Durée : </span>
-            <span class="dure">0</span>
-            <span class="del right"><i class="material-icons">delete</i></span>
-        </div>
-	
-	{{/each}}
-	
-	</div>
-	</div>
-   </div> 
-   <!-- End tab 4 -->
-
-	
-	
-	
-</div>
-
-</div>
-
-		<div class="col l7 m12 s12">
-		
-		<div id="tabsweekday">
-   <ul>
-        <li><a href="#tabs-day">Day</a></li>
-     <li><a href="#tabs-week">Week</a></li>
-
-  
-  </ul>
-  <div id="tabs-week"> 
-
-	 <table>
-        <thead>
-          <tr>
-              <th>Heure</th>
-              <th>Lundi</th>
-              <th>Mardi</th>
-              <th>Mercredi</th>
-              <th>Jeudi</th>
-              <th>Vendredi</th>
-              <th>Samedi</th>
-              <th>Dimanche</th>
-          </tr>
-        </thead>
-
-        <tbody>
-		
-		<tr>
-			<td>0-4</td>
-			<td>{{{h "1" "0"}}}</td>
-			<td>{{{h "2" "0"}}}</td>
-			<td>{{{h "3" "0"}}}</td>
-			<td>{{{h "4" "0"}}}</td>
-			<td>{{{h "5" "0"}}}</td>
-			<td>{{{h "6" "0"}}}</td>
-			<td>{{{h "7" "0"}}}</td>
-		</tr>
-		<tr>
-			<td>4-8</td>
-			<td>{{{h "1" "4"}}}</td>
-			<td>{{{h "2" "4"}}}</td>
-			<td>{{{h "3" "4"}}}</td>
-			<td>{{{h "4" "4"}}}</td>
-			<td>{{{h "5" "4"}}}</td>
-			<td>{{{h "6" "4"}}}</td>
-			<td>{{{h "7" "4"}}}</td>
-		</tr>
-		<tr>
-			<td>8-12</td>
-			<td>{{{h "1" "8"}}}</td>
-			<td>{{{h "2" "8"}}}</td>
-			<td>{{{h "3" "8"}}}</td>
-			<td>{{{h "4" "8"}}}</td>
-			<td>{{{h "5" "8"}}}</td>
-			<td>{{{h "6" "8"}}}</td>
-			<td>{{{h "7" "8"}}}</td>
-		</tr>
-		<tr>
-			<td>12-16</td>
-			<td>{{{h "1" "12"}}}</td>
-			<td>{{{h "2" "12"}}}</td>
-			<td>{{{h "3" "12"}}}</td>
-			<td>{{{h "4" "12"}}}</td>
-			<td>{{{h "5" "12"}}}</td>
-			<td>{{{h "6" "12"}}}</td>
-			<td>{{{h "7" "12"}}}</td>
-		</tr>
-		<tr>
-			<td>16-20</td>
-			<td>{{{h "1" "16"}}}</td>
-			<td>{{{h "2" "16"}}}</td>
-			<td>{{{h "3" "16"}}}</td>
-			<td>{{{h "4" "16"}}}</td>
-			<td>{{{h "5" "16"}}}</td>
-			<td>{{{h "6" "16"}}}</td>
-			<td>{{{h "7" "16"}}}</td>
-		</tr>
-		<tr>
-			<td>20-0</td>
-			<td>{{{h "1" "20"}}}</td>
-			<td>{{{h "2" "20"}}}</td>
-			<td>{{{h "3" "20"}}}</td>
-			<td>{{{h "4" "20"}}}</td>
-			<td>{{{h "5" "20"}}}</td>
-			<td>{{{h "6" "20"}}}</td>
-			<td>{{{h "7" "20"}}}</td>
-		</tr>
-		
-		</tbody>
-	</table>
-
-
- 
-     
-	
-    </div>
-	
-	<div id="tabs-day"> 
-
-	 <table>
-        <thead>
-          <tr>
-              <th>Heure</th>
-              <th>Today</th>
-          </tr>
-        </thead>
-
-        <tbody>
-		
-		<tr>
-			<td>0-4</td>
-			<td>{{{t "0"}}}</td>
-		</tr>
-		<tr>
-			<td>4-8</td>
-			<td>{{{t "4"}}}</td>
-		</tr>
-		<tr>
-			<td>8-12</td>
-			<td>{{{t "8"}}}</td>
-		</tr>	
-		<tr>
-			<td>12-16</td>
-			<td>{{{t "12"}}}</td>
-		</tr>
-		<tr>
-			<td>16-20</td>
-			<td>{{{t "16"}}}</td>
-		</tr>
-		<tr>
-			<td>20-0</td>
-			<td>{{{t "20"}}}</td>
-		</tr>
-		</tbody>
-	</table>
-
-
- 
-     
-	
-    </div>
-     </div>
-    </div> 
-		
-		
-	  </div>
-	
-
-  {{>event}}
-
-  
-</template>
 
 
 <template name="command">
@@ -573,6 +92,9 @@
     
       
      <span>Km_1 Pompe</span>
+     Vitesse : <div class="input-field inline"> <p class="range-field">
+      <input type="range" id="test5" class="lvl_km_1" min="85" max="100" />
+    </p></div>
 {{#if km_1}}
 <button class="km_1_off btn red right">OFF</button>
 {{else}}
@@ -596,22 +118,13 @@
   <li style="height:70px" class="collection-item">
    
 <span>Km_3 Ventil</span>
+Vitesse : <div class="input-field inline"> <p class="range-field">
+      <input type="range" id="test5" class="lvl_km_3" min="0" max="100" />
+    </p></div>
 {{#if km_3}}
 <button class="km_3_off btn red right">OFF</button>
 {{else}}
 <button class="km_3_on btn green right">ON</button>
-{{/if}}
-	
-	
-  </li>
-  <li  style="height:70px" class="collection-item">
-   
-     
- <span>Km_4 Extract</span>
-{{#if km_4}}
-<button class="km_4_off btn red right">OFF</button>
-{{else}}
-<button class="km_4_on btn green right">ON</button>
 {{/if}}
 	
 	
@@ -628,38 +141,81 @@
 
 
 
-<template name="alert">
 
-<ul class="collection with-header">
-<li class="collection-header"><h4>Alertes sms <div class="switch right">
-    <label>
-      Off
-      <input type="checkbox">
-      <span class="lever"></span>
-      On
-    </label>
-  </div></h4></li>
-  <li style="height:70px" class="collection-item">
-  Niveau max trop plein vidange
-  <div class="switch right">
-    <label>
-      Off
-      <input type="checkbox">
-      <span class="lever"></span>
-      On
-    </label>
-  </div>
-  </li> 
-  <li style="height:70px" class="collection-item">
-  Niveau bas eau
-  <div class="switch right">
-    <label>
-      Off
-      <input type="checkbox">
-      <span class="lever"></span>
-      On
-    </label>
-  </div>
-  </li>
-</ul>
+
+<template name="share">
+<div id="share-buttons">
+    
+    <!-- Buffer -->
+    <a href="https://bufferapp.com/add?url=https://simplesharebuttons.com&amp;text=Simple Share Buttons" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/buffer.png" alt="Buffer" />
+    </a>
+    
+    <!-- Digg -->
+    <a href="http://www.digg.com/submit?url=https://simplesharebuttons.com" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/diggit.png" alt="Digg" />
+    </a>
+    
+    <!-- Email -->
+    <a href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 https://simplesharebuttons.com">
+        <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />
+    </a>
+ 
+    <!-- Facebook -->
+    <a href="http://www.facebook.com/sharer.php?u=https://simplesharebuttons.com" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+    </a>
+    
+    <!-- Google+ -->
+    <a href="https://plus.google.com/share?url=https://simplesharebuttons.com" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />
+    </a>
+    
+    <!-- LinkedIn -->
+    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://simplesharebuttons.com" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />
+    </a>
+    
+    <!-- Pinterest -->
+    <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">
+        <img src="https://simplesharebuttons.com/images/somacro/pinterest.png" alt="Pinterest" />
+    </a>
+    
+    <!-- Print -->
+    <a href="javascript:;" onclick="window.print()">
+        <img src="https://simplesharebuttons.com/images/somacro/print.png" alt="Print" />
+    </a>
+    
+    <!-- Reddit -->
+    <a href="http://reddit.com/submit?url=https://simplesharebuttons.com&amp;title=Simple Share Buttons" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/reddit.png" alt="Reddit" />
+    </a>
+    
+    <!-- StumbleUpon-->
+    <a href="http://www.stumbleupon.com/submit?url=https://simplesharebuttons.com&amp;title=Simple Share Buttons" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/stumbleupon.png" alt="StumbleUpon" />
+    </a>
+    
+    <!-- Tumblr-->
+    <a href="http://www.tumblr.com/share/link?url=https://simplesharebuttons.com&amp;title=Simple Share Buttons" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/tumblr.png" alt="Tumblr" />
+    </a>
+     
+    <!-- Twitter -->
+    <a href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+    </a>
+    
+    <!-- VK -->
+    <a href="http://vkontakte.ru/share.php?url=https://simplesharebuttons.com" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/vk.png" alt="VK" />
+    </a>
+    
+    <!-- Yummly -->
+    <a href="http://www.yummly.com/urb/verify?url=https://simplesharebuttons.com&amp;title=Simple Share Buttons" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/yummly.png" alt="Yummly" />
+    </a>
+
+</div>
+
 </template>
